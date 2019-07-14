@@ -1,0 +1,63 @@
+
+
+<div class="container col-lg-2">
+        
+        
+    
+    
+    </div>
+    <div class="container col-lg-6">
+            
+            <br><br><br><br>
+      <div class="row">
+        <div class="card border-primary">
+                <% include ./partials/messages %>
+            <div class="card-header"><h3>Login</h1></div>
+            <div class="card-body">          
+                <form class="form-horizontal" role="form" method="POST" action="/users/login"> 
+                    <div class="form-group">
+                        <label for="username" class="control-label">Email</label>
+
+                        <div class="">
+                            <input id="email" type="text" class="form-control" name="email" value="<%= typeof username != 'undefined' ? username : '' %>" required autofocus>
+
+                           
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="col-lg-6 control-label">Password</label>
+
+                        <div class="">
+                            <input id="password" type="password" class="form-control" name="password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember">Remember Me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="">
+                            <button type="submit" class="btn btn-primary">
+                                Login
+                            </button>
+
+                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                Forgot Your Password?
+                            </a>
+                        </div>
+                    </div>
+                </form>         
+            </div>
+          </div>
+         
+            </div>            
+    </div>
+    

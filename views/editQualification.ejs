@@ -1,0 +1,84 @@
+<div class="col-lg-9">
+                <% include ./partials/messages %>
+<h2> Edit Qualification</h2>
+
+<form method="POST" action="/qualification/update/<%=rec._id%>" autocomplete="off" id="org_form">
+<div class="form-group">
+        <div class="row">
+        <div class="col-lg-3">
+                <p>Person :</p>
+        </div>
+        <div class="col-lg-4">
+                <p><%=user.firstName%> <%=user.lastName%></p>
+        </div>
+        </div>       
+        <div class="row">
+                <div class="col-lg-3">
+                        <p>Qualification name :</p>
+                </div>
+                <div class="col-lg-4">
+                        <input type="text" class="form-control" placeholder="Qualification Name" id="qualification_name" name="qualification_name" value="<%= typeof rec.qualification_name != 'undefined' ? rec.qualification_name:''%>">
+                </div>
+        </div>       
+        
+        <div class="row">                
+                                <div class="col-lg-3">
+                                                <p>Status :</p>
+                                        </div>  
+                                <div class="col-lg-4">
+                        <select class="custom-select" id="status" name="status">                                
+                                <option value="Completed" <%=rec.status =="Completed" ? "selected":""%>>Completed</option>
+                                <option value="Completing" <%=rec.status =="Completing" ? "selected":""%>>Completing</option>
+                                <option value="Nominated" <%=rec.status =="Nominated" ? "selected":""%>>Nominated</option>
+                        </select>
+                        </div>
+                
+        </div>
+        <%function dateFormat(d){%>                                                        
+                <%var today = d;%>
+               <%var dd = today.getDate();%>
+               <%var mm = today.getMonth()+1; //January is 0!%>
+               <%var yyyy = today.getFullYear();   %>    
+        
+               <%if(dd<10) {%>
+               <%dd = '0'+dd%>
+               <%} %>
+        
+               <%if(mm<10) {%>
+               <%mm = '0'+mm%>
+               <%}%>                                                 
+        
+               <%return today = mm + '/' + dd + '/' + yyyy;%>
+               <%}%>
+        <div class="row">
+                <div class="col-lg-3">
+                        <p>Start Date :</p>
+                </div>
+                <div class="col-lg-4">
+                        <input type="date" class="form-control datepicker" id="start_date" name="start_date"  value="<%=dateFormat(rec.start_date);%>">
+                        
+                                    
+                </div>
+                
+        </div> 
+        <div class="row">
+                <div class="col-lg-3">
+                        <p>End Date :</p>
+                </div>
+                <div class="col-lg-4">
+                        <input type="date" class="form-control" placeholder="Qualification Name" id="end_date" name="end_date" value="<%=dateFormat(rec.end_date);%>">
+                </div>                
+        </div>
+        <div class="row">
+                <div class="col-lg-3">                        
+                </div>
+                <div class="col-lg-4">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+        </div>
+        <input type="hidden" class="form-control"  id="email" name="email" value="<%=user.email%>">
+
+</form>
+
+</div>
+

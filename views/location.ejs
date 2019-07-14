@@ -1,0 +1,38 @@
+<%if(recs.length==0){%>
+<div class="jumbotron col-lg-6">
+    <h1 class="display-4">Countries !</h1>
+    <p class="lead">There are currently no Countries.
+
+        Countries are an optional feature that can be used to represent people's physical location around the world. Examples of locations could be "San Francisco" or "Sydney offices".</p>
+    <hr class="my-4">        
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="/location/add" role="button">Add Country >></a>
+    </p>
+</div>
+<%}else{%>
+  <div class="col-lg-9">
+    <% include ./partials/messages %>
+<h2>Country Directory</h2>  <a class="btn btn-primary btn-sm" href="/location/add" role="button">Add a Location</a>  
+                            <div class="table-responsive">   
+                                <table class="table table-hover table-striped table-hover table-bordered display dt-responsive" cellspacing="0"  name="dataTables-qualifications" style="white-space: nowrap;">                                                                                                       
+                                <thead>
+                                <tr>
+                                    <th>Name</th>                                            
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                <% recs.forEach(function(rec){%>
+                                <tr>                                                       
+                                <td><%=rec.location_name%></td>                                                                                         
+                                <td><a  href="/location/edit/<%=rec._id%>" role="button">Edit</a> /
+                                  <a  href="/location/delete/<%=rec._id%>" role="button">Delete</a></td>                                    
+                                </tr>                                                                                                  
+                                <%});%>
+                                </tbody>                                                                                          
+                                </table>                                               
+                        </div>
+</div>
+
+<%}%>

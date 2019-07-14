@@ -1,0 +1,94 @@
+<div class="col-lg-9">
+                <% include ./partials/messages %>
+<h2> Add Skill</h2>
+
+<form method="POST" action="/skills/saveSkillGroupSkill" autocomplete="off" id="org_form">
+<div class="form-group">        
+        <div class="row" hidden>
+                <div class="col-lg-3">
+                        <p>Catagory :</p>
+                </div>
+                <div class="col-lg-4">
+                        <input type="text" class="form-control" placeholder="Role Name" id="role_name" name="role_name">
+                </div>
+        </div>       
+        
+        <div class="row">                
+                <div class="col-lg-3">
+                                <p>Skill Set :</p>
+                        </div>  
+                <div class="col-lg-4">
+                        <select class="custom-select" id="skill_name" name="skill_name" required onchange="getSG();">  
+                                <option value=""></option>
+                        <%skills.forEach(function(skill){%>
+                                <option value="<%=skill.skill_name%>"><%=skill.skill_name%></option>        
+                        <%});%>                                      
+                        </select>
+                </div>
+        </div>
+
+        <div class="row">                
+                <div class="col-lg-3">
+                                <p>Skill Group :</p>
+                        </div>  
+                <div class="col-lg-4">
+                        <select class="custom-select" id="skill_group_name" name="skill_group_name">  
+                                                           
+                        </select>
+                </div>
+        </div>
+        <div class="row">                
+                <div class="col-lg-3">
+                        <p>Skill Set Name :</p>
+                </div>  
+                <div class="col-lg-4">
+                        <input type="text" class="form-control" placeholder="Skill Set Name" id="skill" name="skill">
+                </div>
+                </div>                
+         </div>      
+         
+        <div>
+                <div class="row">
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-4">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </div>
+        </div>
+        <input type="hidden" class="form-control"  id="email" name="email" value="<%=user.email%>">
+
+</form>
+
+</div>
+
+
+
+<script>
+function getSG(){
+        var s1 = document.getElementById('skill_group_name');
+        s1.innerHTML = "";
+        $.ajax({
+                
+                type: 'POST',						
+                contentType: 'application/json',
+                url: '/skills/getSkillGroup/'+document.getElementById('skill_name').value,						
+                success: function(res,custid) {
+                var s1 = document.getElementById('skill_group_name');
+                            s1.innerHTML = "";
+                           var newOption = document.createElement("option"); 
+                           newOption.value = "";
+                           newOption.innerHTML = "";
+                           s1.options.add(newOption);                          
+                           console.log(res);
+                           res.sg.skill_group.forEach(function(sg){
+                            var newOption = document.createElement("option"); 
+                            newOption.value = sg.skill_group_name;
+                           newOption.innerHTML = sg.skill_group_name;
+                           s1.options.add(newOption);
+                           });  
+                        }
+                        });
+};
+
+</script>

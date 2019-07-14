@@ -1,0 +1,171 @@
+<div class="card col-lg-9">        
+    <% include ./partials/messages %>
+        <h3 class="card-header"><%=user.firstName%> <%=user.lastName%></h3>        
+        <div class="card-body">
+                <ul class="nav nav-tabs">                    
+                        <li class="nav-item">
+                          <a class="nav-link active" data-toggle="tab" href="#summery">Summery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#detail">Detail</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#qualifications">Qualifications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#assessments">Assessments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#trends">Trends</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#attachments">Attachaments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#about">About</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                          </div>
+                        </li>
+                      </ul>
+                      <div id="myTabContent" class="tab-content">
+                          <br>                 
+                          
+                        <div class="tab-pane fade show active" id="summery">
+                                <div class="row">
+                                <div class="card bg-light mb-3" style="max-width: 20rem;">
+                                        <div class="card-header">At a glance </div>
+                                        <div class="card-body">
+                                                <div id="chart_div" style="width: 400px; height: 120px;"></div>
+
+
+                                        </div>
+                                        
+                                </div>
+                                      <script type="text/javascript">
+                                        google.charts.load('current', {'packages':['gauge']});
+                                        google.charts.setOnLoadCallback(drawChart);
+                                  
+                                        function drawChart() {
+                                  
+                                          var data = google.visualization.arrayToDataTable([
+                                            ['Label', 'Value'],
+                                            ['Skill Level', 0],
+                                            ['Interest level', 0]                                            
+                                          ]);
+                                  
+                                          var options = {
+                                            width: 400, height: 120,                                            
+                                            minorTicks: 5
+                                          };
+                                  
+                                          var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+                                  
+                                          chart.draw(data, options);
+                                  
+                                         
+                                        }
+                                      </script>
+                                      <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <div class="card bg-light  mb-3" style="max-width: 20rem;">
+                                        <div class="card-header">About</div>
+                                        <div class="card-body">
+                                          <h4 class="card-title"></h4>
+                                          <p class="card-text"></p>
+                                        </div>
+                                      </div>                    
+                                  </div>
+                                  
+                                  
+                        </div>
+                        <div class="tab-pane fade" id="detail">
+                          <p> There is no data to display.</p>
+                        </div>
+                        <div class="tab-pane fade" id="qualifications">
+                          
+                          <div class="row" style="text-align: center;">
+                            <%if (qualifications.length ==0){%>
+                              <div class="jumbotron col-lg-9">                                                                    
+                                  <p>There are no Qualifications recorded for this person.</p>
+                                  <p class="lead">
+                                      <a class="btn btn-primary btn-lg" href="/users/qualification" role="button">Add a Qualification</a>
+                                  </p>
+                                </div>                              
+                              
+                              <%}else{%>
+                                <a class="btn btn-primary btn-sm" href="/users/qualification" role="button">Add a Qualification</a>
+                                <div class="table-responsive">   
+                                    <table class="table table-hover table-striped table-hover table-bordered display dt-responsive" cellspacing="0"  name="dataTables-qualifications" style="white-space: nowrap;">                                                                                                       
+                                    <thead>
+                                    <tr>
+                                            <th>Name</th>
+                                            <th>Status</th>
+                                            <th>Start Date</th>                                                                                                        
+                                            <th>End Date</th>
+                                            <th>Action</th>                                            
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%function dateFormat(d){%>                                                        
+                                          <%var today = d;%>
+                                         <%var dd = today.getDate();%>
+                                         <%var mm = today.getMonth()+1; //January is 0!%>
+                                         <%var yyyy = today.getFullYear();   %>    
+                                  
+                                         <%if(dd<10) {%>
+                                         <%dd = '0'+dd%>
+                                         <%} %>
+                                  
+                                         <%if(mm<10) {%>
+                                         <%mm = '0'+mm%>
+                                         <%}%>                                                 
+
+                                         <%return today = mm + '/' + dd + '/' + yyyy;%>
+                                         <%}%>
+                                    <% qualifications.forEach(function(qualification){%>
+                                    <tr>                                
+                                    <td><%=qualification.qualification_name%></td>
+                                    <td><%=qualification.status%></td>
+                                    <td><%=dateFormat(qualification.start_date)%></td>
+                                    <td><%=dateFormat(qualification.end_date)%></td>
+                                    <td><a  href="/qualification/edit/<%=qualification._id%>" role="button">Edit</a> /
+                                      <a  href="/qualification/delete/<%=qualification._id%>" role="button">Delete</a></td>                                    
+                                    </tr>                                                                                                  
+                                    <%});%>
+                                    </tbody>                                                                                          
+                                    </table>                                               
+                            </div>  
+                            <%}%>
+
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="assessments">
+                          <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+                        </div>
+                        <div class="tab-pane fade" id="trends">
+                          <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+                        </div>
+                        <div class="tab-pane fade" id="attachments">
+                          <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+                        </div>
+                        <div class="tab-pane fade" id="about">
+                          <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+                        </div>
+                      </div>
+        </div>
+        
+        
+        </div>
+
+
+
+
+
+        

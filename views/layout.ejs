@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script
+			  src="https://code.jquery.com/jquery-3.4.1.js"
+			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			  crossorigin="anonymous"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js">
+        </script>
+<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/yeti/bootstrap.min.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>    
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.css">
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css" rel="stylesheet" id="bootstrap-css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <title>Skills Base</title>
+    <!-- <script type="text/javascript" class="init">
+
+
+	
+
+
+        $(document).ready(function() {
+            var table = $('#example').DataTable( {
+                lengthChange: false,
+                buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+            } );
+        
+            table.buttons().container()
+                .insertBefore( '#example_filter' );
+        } );
+        
+        
+        
+            </script>
+ -->
+</head>
+<body>         
+<div id="app">
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Skills Base</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            
+          </ul>
+          <span class="navbar-text">
+              <li>
+                  <a href="/users/logout">Logout</a>                                                                     
+              </li>
+          </span>
+        </div>
+      </nav>     
+      <div class="wrapper">
+      <div class="row col-lg-12">  
+          <%if(nav=='true'){%>        
+      <div class="container-fluid">
+        <div class="row">
+          <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+            <div class="sidebar-sticky">
+              <ul class="nav flex-column">
+                  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                      <span><b>SUMMARIES</b></span>
+                      <a class="d-flex align-items-center text-muted" href="#">
+                        <span data-feather="plus-circle"></span>
+                      </a>
+                    </h6>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/dashboard">
+                    <span data-feather="home"></span>
+                    My Summary <span class="sr-only">(current)</span>
+                  </a>
+                  <a class="nav-link active" href="#">
+                      <span data-feather="home"></span>
+                      My Organization <span class="sr-only"></span>
+                    </a>
+                </li>    
+               
+              </ul>
+
+              <ul class="nav flex-column">
+                  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                      <span><b>SUPERVISOR</b></span>
+                      <a class="d-flex align-items-center text-muted" href="#">
+                        <span data-feather="plus-circle"></span>
+                      </a>
+                    </h6>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/assess/index">
+                    <span data-feather="home"></span>
+                    Assess People <span class="sr-only"></span>
+                  </a>                  
+                </li> 
+              </ul>
+
+              <ul class="nav flex-column">
+                  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                      <span><b>DIRECTORIES</b></span>
+                      <a class="d-flex align-items-center text-muted" href="#">
+                        <span data-feather="plus-circle"></span>
+                      </a>
+                    </h6>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/location/index">
+                    <span data-feather="home"></span>
+                    Country <span class="sr-only"></span>
+                  </a>                  
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link active" href="/users/People">
+                      <span data-feather="home"></span>
+                      People <span class="sr-only"></span>
+                    </a>                  
+                  </li> 
+                <li class="nav-item" hidden>
+                  <a class="nav-link active" href="#">
+                    <span data-feather="home"></span>
+                    Qualifications <span class="sr-only"></span>
+                  </a>                  
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link active" href="/roles/index">
+                    <span data-feather="home"></span>
+                    Roles <span class="sr-only"></span>
+                  </a>                 
+                </li>                 
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Skills</a>
+                  <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 39px, 0px);">
+                    <a class="dropdown-item" href="/skills/index">Skill Set</a>
+                    <a class="dropdown-item" href="/skills/skillGroup/index">Skill Group</a>
+                    <a class="dropdown-item" href="/skills/skillGroupSkill/index">Skills</a>                    
+                  </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/teams/index">
+                      <span data-feather="home"></span>
+                      Teams <span class="sr-only"></span>
+                    </a>                  
+                  </li> 
+                  <li class="nav-item">
+                    <a class="nav-link active" href="/certifications/index">
+                      <span data-feather="home"></span>
+                      Certificates <span class="sr-only"></span>
+                    </a>                  
+                  </li> 
+              </ul>
+
+              <ul class="nav flex-column">
+                  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                      <span><b>SEARCH</b></span>
+                      <a class="d-flex align-items-center text-muted" href="#">
+                        <span data-feather="plus-circle"></span>
+                      </a>
+                    </h6>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">
+                    <span data-feather="home"></span>
+                    Global Search <span class="sr-only"></span>
+                  </a>                  
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                      <span data-feather="home"></span>
+                      People finder <span class="sr-only"></span>
+                    </a>                  
+                  </li> 
+              </ul>
+
+              <ul class="nav flex-column">
+                  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                      <span><b></b></span>
+                      <a class="d-flex align-items-center text-muted" href="#">
+                        <span data-feather="plus-circle"></span>
+                      </a>
+                    </h6>
+                
+              </ul>
+              <ul class="nav flex-column" style="height: 100%">
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span><b></b></span>
+                    <a class="d-flex align-items-center text-muted" href="#">
+                      <span data-feather="plus-circle"></span>
+                    </a>
+                  </h6>
+              
+            </ul>
+              
+            </div>
+          </nav>
+          <%}%>
+          <%- body %>  
+        </div>
+</div>
+
+
+
+      </div>
+      </div>
+      </div>
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/dataTables.bootstrap.min.js"></script>
+      <!-- <script src="/datatables-plugins/dataTables.bootstrap.min.js"></script> -->
+      <!-- <script src="/datatables-responsive/dataTables.responsive.js"></script> -->
+      <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
+
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+
+      <script>
+          $(document).ready(function() {
+              $('#dataTables-qualifications').DataTable({            
+                  compact: false,
+                     responsive: false,
+                     "scrollX": true,
+                     fixedColumns: true,
+                     "order": []          
+              });  
+           });
+      </script>
+
+<script >
+    $(document).ready(function() {
+        $('.date').datepicker({
+            format: "mm/dd/yyyy",
+            autoclose: true,
+            todayHighlight: true,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            
+            changeMonth: true,
+            changeYear: true,
+            orientation: "button"
+        });
+        });
+</script>
+</body>
+</html>

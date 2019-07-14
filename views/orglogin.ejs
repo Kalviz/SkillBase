@@ -1,0 +1,133 @@
+<br><br>
+<div class="container col-lg-6">
+    
+<h2> Set up a new Skills Base instance</h1>
+<p>Use this form if you would like to set up a new organization in Skills Base. We will create a brand new instance for you to fill with your specific organization's data.</p>
+<form method="POST" action="/organization/save" autocomplete="off" id="org_form">
+<div class="form-group">
+        <label class="col-form-label" for="inputDefault">Organization Name</label>
+        <span class="mandatory">
+        <input type="text" class="form-control" placeholder="Organization Name" id="organization_name" name="organization_name">
+    </span>    <p class="help-block"><small>The name of your organization *</small></p>
+
+</div>
+<div class="form-group">
+        <label class="col-form-label" for="inputDefault">Organization Industry</label>
+        <span class="mandatory">
+        <select class="form-control" id="organization_industry" name="organization_industry"><option value="">-- Please select --</option><option value="4000796428">Accounting</option><option value="4000796429">Advertising</option><option value="4000796430">Aerospace</option><option value="4000796431">Agriculture</option><option value="4000796432">Aircraft</option><option value="4000796433">Airline</option><option value="4000796434">Apparel & Accessories</option><option value="4000796435">Automotive</option><option value="4000796436">Banking</option><option value="4000796437">Biotechnology</option><option value="4000796438">Broadcasting</option><option value="4000796439">Brokerage</option><option value="4000796440">Call Centers</option><option value="4000796441">Cargo Handling</option><option value="4000796442">Chemicals</option><option value="4000796443">Computer</option><option value="4000796444">Construction</option><option value="4000796445">Consulting</option><option value="4000796446">Consumer Products</option><option value="4000796447">Cosmetics</option><option value="4000796448">Defense</option><option value="4000796449">Department Stores</option><option value="4000796450">Ecommerce</option><option value="4000796451">Education</option><option value="4000796452">Electronics</option><option value="4000796453">Energy</option><option value="4000796454">Engineering</option><option value="4000796455">Entertainment & Leisure</option><option value="4000796456">Executive Search</option><option value="4000796457">Financial Services</option><option value="4000796458">Food, Beverage & Tobacco</option><option value="4000796459">Gaming</option><option value="4000796460">Government</option><option value="4000796461">Grocery</option><option value="4000796462">Health Care</option><option value="4000796463">Hospitality</option><option value="4000796489">Information Technology</option><option value="4000796464">Insurance</option><option value="4000796465">Internet Publishing</option><option value="4000796466">Investment Banking</option><option value="4000796467">Legal</option><option value="4000796468">Machinery</option><option value="4000796469">Manufacturing</option><option value="4000796470">Media</option><option value="4000796471">Motion Picture & Video</option><option value="4000796472">Music</option><option value="4000796473">Newspaper Publishers</option><option value="4000796474">Not for Profit</option><option value="4000796475">Online Auctions</option><option value="4000796476">Other</option><option value="4000796477">Pension Funds</option><option value="4000796478">Pharmaceuticals</option><option value="4000796479">Private Equity</option><option value="4000796484">Professional Services</option><option value="4000796480">Publishing</option><option value="4000796481">Real Estate</option><option value="4000796482">Retail & Wholesale</option><option value="4000796483">Securities & Commodity Exchanges</option><option value="4000796485">Shipping</option><option value="4000796486">Soap & Detergent</option><option value="4000796487">Software</option><option value="4000796488">Sports</option><option value="4000796490">Telecommunications</option><option value="4000796491">Television</option><option value="4000796492">Transportation</option><option value="4000796493">Trucking</option><option value="4000796494">Utilities</option><option value="4000796495">Venture Capital</option>
+        </select>
+    </span>    <p class="help-block"><small>In which industry does your core business primarily operate? *</small></p>
+
+</div>
+
+<div class="form-group">
+        <label class="col-form-label" for="inputDefault">Organization size</label>
+        <span class="mandatory">
+        <select class="form-control" id="organization_size" name="organization_size"><option value="">-- Please select --</option><option value="1-10">1 - 10 employees</option><option value="11-50">11 - 50 employees</option><option value="51-200">51 - 200 employees</option><option value="201-500">201 - 500 employees</option><option value="501-1000">501 - 1000 employees</option><option value="1001-5000">1,001 - 5,000 employees</option><option value="5001-10000">5,001 - 10,000 employees</option><option value="10000+">10,000+ employees</option>
+        </select>
+    </span>    <p class="help-block"><small>How many employees does your organization have in total? *</small></p>
+
+</div>  
+
+<div class="form-group">
+        <label for="staticEmail" class="col-form-label">Email</label>      
+        <input type="text" class="form-control" id="email" name="email" placeholder="email@example.com"/>
+      
+    </span>    <p class="help-block"><small>Please enter your email address. For information about how we protect your privacy, please read our <a href="/users/privacy">Privacy Policy</a> *</small></p>
+
+</div>  
+
+<div class="form-group">
+        <label for="staticEmail" class="col-form-label">Your role</label>      
+        <input type="text" class="form-control" id="role" name="role" placeholder="Your role"/>
+      
+    </span>    <p class="help-block"><small>What is your role in the organization? *</small></p>
+
+</div>  
+
+<div class="form-group">
+        <label for="staticEmail" class="col-form-label">Your department
+            </label>      
+        <input type="text" class="form-control" id="department" name="department" placeholder="Your department"/>
+      
+    </span>    <p class="help-block"><small>In which department of the organization do you work? *</small></p>
+
+</div> 
+
+<div class="form-group" hidden>
+    <label class="control-label">Shortcut link</label>
+    <div class="form-group">
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">https://app.skills-base.com/o/</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="link" name="link">
+        <div class="input-group-append">              
+                <button type="button" class="btn btn-outline-info">Check Availability</button>
+        </div>
+        </div>
+        <p class="help-block"><small>Choose a shortcut link that you will use for direct access your Skills Base instance. Only lowercase letters and numbers are accepted (no spaces). Note: This can't be changed, so choose wisely!</a> *</small></p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+</form>
+
+<button type="button" class="btn btn-primary" id="acceptBtn">Accept</button>   
+
+
+
+<div class="modal fade" id="acceptModal" role="dialog">                                    
+        <div class="modal-dialog">                                
+                <!-- Modal content-->
+                <div class="modal-content">
+                        <div class="modal-header" >
+                                <h4 class="modal-title">Confirm email address<strong></strong></h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>                                    
+                        </div>
+                        <div class="modal-body">    
+                                <div class="row"> 
+                                        <div class="form-group col-lg-9">
+                                                <label for="task_id">It's important that the email address you entered is valid and correct in order to receive the registration email to access your new instance.
+
+                                                    Is this your correct email address?</label>
+                                        </div> 
+                                </div>
+                        </div>
+                        <div class="modal-footer">                                    
+                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>                    
+                                <button type="submit" class="btn btn-primary" onclick="submitform()" >Yes</button>                                        
+                        </div>
+                </div>  
+        </div>                                                                                      
+</div>
+
+<script>
+    $(document).ready(function(){
+        $("#acceptBtn").click(function(){
+        $("#acceptModal").modal("toggle");
+        
+        });       
+
+    });
+
+    function submitform(){
+        document.forms['org_form'].submit();
+        };
+    
+</script>
+
+
+
+
+
+
+
+

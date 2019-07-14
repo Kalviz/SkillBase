@@ -1,0 +1,46 @@
+<div class="col-lg-9">
+                <% include ./partials/messages %>
+<h2> Edit Role</h2>
+
+<form method="POST" action="/roles/update/<%=rec._id%>" autocomplete="off" id="org_form">
+<div class="form-group">        
+        <div class="row">
+                <div class="col-lg-3">
+                        <p>Role name :</p>
+                </div>
+                <div class="col-lg-4">
+                        <input type="text" class="form-control" placeholder="Role Name" id="role_name" name="role_name" value="<%=rec.role_name%>">
+                </div>
+        </div>       
+        
+        <div class="row">                
+                                <div class="col-lg-3">
+                                                <p>Assign skill categories? :</p>
+                                        </div>  
+                                <div class="col-lg-4">
+                        <select class="custom-select" id="status" name="status">                                
+                                <option value="Completed">No</option>
+                                <option value="Completing">Yes</option>                                
+                        </select>
+                        
+                        </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-lg-3"></div>
+                                <div class="col-lg-6"><small id="emailHelp" class="form-text text-muted">Would you like to assign skill categories to this role? Selecting "Yes" will enable you to configure people to inherit their skill set from this role.</small></div>
+                        </div>
+                        
+                        
+                
+        </div>
+        <div class="row">
+                <div class="col-lg-3">                        
+                </div>
+                <div class="col-lg-4">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+        </div>      
+
+</form>
+
+</div>

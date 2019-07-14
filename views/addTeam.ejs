@@ -1,0 +1,65 @@
+<div class="col-lg-9">
+                <% include ./partials/messages %>
+<h2> Add Team</h2>
+
+<form method="POST" action="/teams/save" autocomplete="off" id="org_form">
+<div class="form-group">        
+        <div class="row">
+                <div class="col-lg-3">
+                        <p>Team name :</p>
+
+                </div>
+                <div class="col-lg-4">
+                        <input type="text" class="form-control" placeholder="Team Name" id="team_name" name="team_name">
+                </div>
+        </div>              
+        <div class="row" hidden>                
+                <div class="col-lg-3">
+                        <p>Delegates :</p>
+                </div>  
+                <div class="col-lg-4">
+                <select class="custom-select" id="delegates" name="delegates">                                
+                        <option value="Delegates in this team">Delegates in this team</option>
+                        <option value="All Delegates">All Delegates</option>
+                        <option value="Specific Delegates">Specific Delegates</option>   
+                </select>
+                </div>
+        </div>            
+        <div class="row" hidden>                
+                <div class="col-lg-3">
+                        <p>User Selectable :</p>
+                </div>  
+                <div class="col-lg-4">
+                <select class="custom-select" id="user_selectable" name="user_selectable">                                
+                        <option value="Yes">Yes</option>                        
+                        <option value="No">No</option>                        
+                </select>
+
+                </div>
+        </div>    
+        
+        <div class="row" hidden>                
+                <div class="col-lg-3">
+                                <p>Assign skill categories? :</p>
+                        </div>  
+                <div class="col-lg-4">
+                <select class="custom-select" id="skill_catagory" name="skill_catagory">                                
+                        <option value="Yes">Yes</option>                        
+                        <option value="No">No</option>                        
+                </select>
+
+                </div>
+        </div>    
+        
+        <div class="row">
+                <div class="col-lg-3">                        
+                </div>
+                <div class="col-lg-4">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+        </div>
+        <input type="hidden" class="form-control"  id="email" name="email" value="<%=user.email%>">
+
+</form>
+
+</div>

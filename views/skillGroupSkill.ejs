@@ -1,0 +1,84 @@
+
+
+<div class="jumbotron col-lg-6 " hidden>
+    <% include ./partials/messages %>
+        <h1 class="display-4">Skills!</h1>
+        <p class="lead">There are currently no Skills.
+
+            Click the button below to add some skill groups for people to be assessed on.
+        <hr class="my-4">        
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="/skills/addSkillGroupSkill" role="button">Add Skill Group >></a>
+        </p>
+      </div>
+
+      <div class="col-lg-9">
+        <% include ./partials/messages %>
+      <h2>Skills Directory</h2>  <a class="btn btn-primary btn-sm" href="/skills/addSkillGroupSkill" role="button">Add a Skill</a> 
+
+      <div class="table-responsive">   
+        <table class="table table-hover table-striped table-hover table-bordered display dt-responsive" cellspacing="0"  name="dataTables-qualifications" style="white-space: nowrap;">                                                                                                       
+        <thead>
+        <tr>                                            
+                <th>Skills Set</th>                                            
+                <th>Group Name</th>
+                <th>Skill</th>                                            
+        </tr>
+        </thead>
+        <tbody>
+        
+          <%recs.forEach(function(rec){%>
+            <tr>
+            <td><b><%=rec.skill_name%></b></td>
+            <%var sg_row=0%>
+            <%rec.skill_group.forEach(function(sg){%>
+              <%if(sg_row!=0){%>
+                <tr>
+                  <td></td>
+              <%};%>
+              <td><%=sg.skill_group_name%></td>              
+                  <%var sk_row=0;%>
+                  <%if(sg.skills.length==0){%>
+                  <td></td>
+                  </tr>
+                  <%}else{%>
+                  
+                    <%}%>
+                  <%sg.skills.forEach(function(skill){%>
+                    <%if(sk_row!=0){%>
+                      <tr>
+                        <td></td>
+                        <td></td>                      
+                    <%}%>
+                    <td><%=skill.skill%></td>
+                    <%sk_row++;%>
+                  </tr>
+                    <%});%>
+                </tr>
+              <%sg_row++;%>
+              <%});%> 
+              <tr class="">
+                <td></td>
+              <td></td>
+            <td></td></tr>
+          <% });%>                                                                   
+       
+        </tbody>                                                                                          
+        </table>                                               
+</div>
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+ 
+    
+    
+   

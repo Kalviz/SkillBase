@@ -1,0 +1,44 @@
+
+<%if(recs.length==0){%>
+
+<div class="jumbotron col-lg-6">
+    <% include ./partials/messages %>
+        <h1 class="display-4">Roles !</h1>
+        <p class="lead">There are currently no Roles.
+
+            Roles are an optional feature that can be used to represent position titles within your organization. Examples of Roles could be "Project Manager" or "Accountant". Roles are generally used to assign skills to people based on their job function.
+        <hr class="my-4">        
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="/roles/add" role="button">Add a Role >></a>
+        </p>
+      </div>
+  <%}else{%>
+    <div class="col-lg-9">
+        <% include ./partials/messages %>
+    <h2>Roles Directory</h2>  <a class="btn btn-primary btn-sm" href="/roles/add" role="button">Add a Role</a>  
+                                <div class="table-responsive">   
+                                    <table class="table table-hover table-striped table-hover table-bordered display dt-responsive" cellspacing="0"  name="dataTables-qualifications" style="white-space: nowrap;">                                                                                                       
+                                    <thead>
+                                    <tr>
+                                            <th>Name</th>
+                                            <th>Targets</th>
+                                            <th>Skills Catagory</th>                                                                                                                                                    
+                                            <th>Action</th>                                            
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                       
+                                    <% recs.forEach(function(rec){%>
+                                    <tr>                                
+                                    <td><%=rec.role_name%></td>
+                                    <td></td>
+                                    <td></td>                                    
+                                    <td><a  href="/roles/edit/<%=rec._id%>" role="button">Edit</a> /
+                                      <a  href="/roles/delete/<%=rec._id%>" role="button">Delete</a></td>                                    
+                                    </tr>                                                                                                  
+                                    <%});%>
+                                    </tbody>                                                                                          
+                                    </table>                                               
+                            </div>
+    <%}%>
+    </div>

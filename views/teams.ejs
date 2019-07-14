@@ -1,0 +1,44 @@
+
+<%if(recs.length==0){%>
+
+<div class="jumbotron col-lg-6">
+    <% include ./partials/messages %>
+        <h1 class="display-4">Teams !</h1>
+        <p class="lead">There are currently no Teams.
+
+            Roles aTeams are an optional feature, generally used to achieve one or more of the following:
+
+            <li>Logically group people (usually to reflect an organizational structure)</li>
+            <li>Manage permissions (eg: supervisory privileges)</li>
+            <li>Specify skill sets by Team</li>
+        <hr class="my-4">        
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="/teams/add" role="button">Add a Team >></a>
+        </p>
+      </div>
+  <%}else{%>
+    <div class="col-lg-9">
+        <% include ./partials/messages %>
+    <h2>Teams Directory</h2>  <a class="btn btn-primary btn-sm" href="/teams/add" role="button">Add a Team</a>  
+                                <div class="table-responsive">   
+                                    <table class="table table-hover table-striped table-hover table-bordered display dt-responsive" cellspacing="0"  name="dataTables-qualifications" style="white-space: nowrap;">                                                                                                       
+                                    <thead>
+                                    <tr>
+                                            <th>Name</th>                                                                                      
+                                            <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                       
+                                    <% recs.forEach(function(rec){%>
+                                    <tr>                                
+                                    <td><%=rec.team_name%></td>                                
+                                    <td><a  href="/teams/edit/<%=rec._id%>" role="button">Edit</a> /
+                                      <a  href="/teams/delete/<%=rec._id%>" role="button">Delete</a></td>                                    
+                                    </tr>                                                                                                  
+                                    <%});%>
+                                    </tbody>                                                                                          
+                                    </table>                                               
+                            </div>
+    <%}%>
+    </div>
