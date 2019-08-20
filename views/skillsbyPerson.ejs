@@ -1,0 +1,165 @@
+<div class="col-lg-9">
+    <% include ./partials/messages %>
+        <h3 class="display-4">Skills by Person</h3>   
+    
+    <div class="table-responsive">   
+        <table class="table table-hover table-striped table-hover table-bordered display dt-responsive" cellspacing="0"   name="dataTables-qualifications" style="white-space: nowrap;" id='test'>                                                                                                       
+        <thead>
+        <tr>
+                <th>Name</th>
+                <th>Team</th>                                            
+                <th>Product / Role</th>                                            
+                <th>City</th>
+                <th>Country</th>                
+        </tr>
+        </thead>
+        <tbody>
+            <td><%=rec.firstName%> <%=rec.lastName%></td>
+            <td><%=rec.team_name%></td>
+            <td><%=rec.skill_name%></td>
+            <td><%=rec.city%></td>
+            <td><%=rec.country%></td>
+        </tbody>
+        </table>
+    </div>   
+    <%if(rec.status!='Assessed'){%>
+        <h3>Assesment Not Completed.</h3>
+        <%if(rec.status=='Cont'){%>
+            <a  class="btn btn-outline-success btn-sm" href="/assess/assessPerson/<%=rec._id%>" role="button">Continue Assessment>></a></td>                                              
+        <%}else{%>
+            <a  class="btn btn-outline-primary btn-sm" href="/assess/assessPerson/<%=rec._id%>" role="button">Assess Now >></a></td>                                    
+        <%}%>
+    <%}else{%>        
+    <div class="col-lg-9">            
+            <canvas id="myChart" width="400" height="200"></canvas>
+            <script>
+                    var ctx = document.getElementById('myChart').getContext('2d');  
+                    <%var profs=[],profcount=0;%>
+                    <%rec.skillset[0].skill_group.forEach(function(sg){%>
+                        <%sg.skills.forEach(function(skill){%>
+                            <%profcount+=skill.proficiency%>
+                        <%});%>
+                        <%profs.push(profcount/sg.skills.length)%>
+                        <%profcount=0%>
+                    <%});%>                   
+
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                           
+                            datasets: [{
+                                label: 'Average Proficiency per Product Group',
+                                data: [<%=profs%>],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }],
+                                xAxes: [{ barPercentage: 0.5 }]
+                                
+                            }                        
+                        }
+                    });
+                    <%var t=obj;%>                    
+                    <%for(var x = 0;x<t.length;x++){%>
+                        myChart.data.labels.push('<%=obj[x];%>');
+                    <%}%>                     
+
+
+                    /* myChart.data.labels.push('<%=obj[0];%>');
+                    myChart.data.datasets[0].data[0] = 100;
+                    myChart.data.labels.push('<%=obj[1];%>');
+                    myChart.data.datasets[0].data[1] = 50; */
+                    //myChart.data.labels[0] = <%=obj[0];%>;
+                    myChart.update();
+                    
+                    </script>
+        </div> 
+<br><Br><br>
+    <div class="alert alert-dismissible alert-primary">                                    
+            <strong>Product Group Description</strong>
+          </div>
+        <table class="table table-hover table-striped table-hover table-bordered display dt-responsive" cellspacing="0"  name="dataTables-qualifications" style="padding:0px; margin:0px;white-space: nowrap;" >                                                                                                       
+            <thead>
+                <th class="col-lg-3"><b>Skill Group</b></th>
+                <th class="col-lg-3"><b>Skills</b></th>
+                <th class='col-lg-2'colspan="5"><b>Proficiency</b></th>
+            </thead>
+            <body>     
+            <tr>                
+                <%var sg_row=0%>
+                <%rec.skillset[0].skill_group.forEach(function(sg){%>
+                    
+                      <td ><%=sg.skill_group_name%></td>              
+                          <%var sk_row=0;%>
+                          <%if(sg.skills.length==0){%>
+                          <td></td>
+                          </tr>
+                          <%}else{%>
+                          
+                            <%}%>
+                          <%sg.skills.forEach(function(skill){%>
+                            <%if(sk_row!=0){%>
+                              <tr>                                
+                                <td></td>                      
+                            <%}%>
+                            <td><%=skill.skill%></td>
+                            <td><%=skill.proficiency%></td>
+    
+                            
+                            
+                            <%sk_row++;%>
+                          </tr>
+                            <%});%>
+                        </tr>
+                      <%sg_row++;%>
+                <%});%>
+            </tr>
+        </body>
+            </table>
+            <br><br><br><br>
+            <div class="alert alert-dismissible alert-primary">                                    
+                <strong>Certifications</strong>
+            </div>
+            <table class="table table-hover table-striped table-hover table-bordered display dt-responsive" cellspacing="0"  name="dataTables-qualifications" style="white-space: nowrap;">                                                                                                       
+                    <thead>
+                    <tr>
+                        <th>Name</th>                                            
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                       
+                    <% certifications.forEach(function(certification){%>
+                    <tr>                                                       
+                    <td><%=certification.certification_name%></td>                                                                                         
+                    <td><a  href="/certifications/edit/<%=certification._id%>" role="button">Edit</a> /
+                      <a  href="/certifications/delete/<%=certification._id%>" role="button">Delete</a></td>                                    
+                    </tr>                                                                                                  
+                    <%});%>
+                    </tbody>                                                                                          
+                    </table>   
+                    <br><br><br><br>
+                    <%}%>
+</div>

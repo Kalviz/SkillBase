@@ -22,7 +22,8 @@
         <tr>                                            
                 <th>Skills Set</th>                                            
                 <th>Group Name</th>
-                <th>Skill</th>                                            
+                <th>Skill</th>   
+                <th></th>                                         
         </tr>
         </thead>
         <tbody>
@@ -40,6 +41,7 @@
                   <%var sk_row=0;%>
                   <%if(sg.skills.length==0){%>
                   <td></td>
+                  <td></td>
                   </tr>
                   <%}else{%>
                   
@@ -48,9 +50,13 @@
                     <%if(sk_row!=0){%>
                       <tr>
                         <td></td>
-                        <td></td>                      
+                        <td></td>  
                     <%}%>
                     <td><%=skill.skill%></td>
+                    <td>
+                      <a href="/skills/editSkillGroupSkill/<%=skill._id%>/<%=sg_row%>/<%=sk_row%>">Edit</a> /
+                      <a href="#">Delete</a>
+                    </td>
                     <%sk_row++;%>
                   </tr>
                     <%});%>
@@ -59,6 +65,7 @@
               <%});%> 
               <tr class="">
                 <td></td>
+              <td></td>
               <td></td>
             <td></td></tr>
           <% });%>                                                                   

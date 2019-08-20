@@ -20,9 +20,7 @@
                                     <table class="table table-hover table-striped table-hover table-bordered display dt-responsive" cellspacing="0"  name="dataTables-qualifications" style="white-space: nowrap;">                                                                                                       
                                     <thead>
                                     <tr>
-                                            <th>Name</th>
-                                            <th>Targets</th>
-                                            <th>Skills Catagory</th>                                                                                                                                                    
+                                            <th>Name</th> 
                                             <th>Action</th>                                            
                                     </tr>
                                     </thead>
@@ -30,9 +28,7 @@
                                        
                                     <% recs.forEach(function(rec){%>
                                     <tr>                                
-                                    <td><%=rec.role_name%></td>
-                                    <td></td>
-                                    <td></td>                                    
+                                    <td><%=rec.role_name%></td>                                  
                                     <td><a  href="/roles/edit/<%=rec._id%>" role="button">Edit</a> /
                                       <a  href="/roles/delete/<%=rec._id%>" role="button">Delete</a></td>                                    
                                     </tr>                                                                                                  

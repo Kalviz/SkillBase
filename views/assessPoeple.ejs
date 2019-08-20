@@ -3,19 +3,18 @@
 
 <div class="col-lg-9">
     <% include ./partials/messages %>
-        <h3 class="display-4">Assess People !</h3>
+        <h3 class="display-4">Assess People</h3>
         
    
     <a class="btn btn-primary btn-sm" href="/users/addPeople" role="button">Add a Person</a>  
+    <br><br>
                                 <div class="table-responsive">   
-                                    <table class="table table-hover table-striped table-hover table-bordered display dt-responsive" cellspacing="0"   name="dataTables-qualifications" style="white-space: nowrap;" id='test'>                                                                                                       
+                                    <table class="table table-hover table-striped table-bordered display dt-responsive" id="dataTables-access" cellspacing="0"  name="dataTables-access" style="display: table-header-group;white-space: nowrap;width: 100%;table-layout: fixed;">                                                                                                       
                                     <thead>
                                     <tr>
                                             <th>Name</th>
                                             <th>Team</th>                                            
-                                            <th>Security Group</th>                                            
-                                            <th>Self Assessment</th>
-                                            <th>Supervisor Assessment</th>
+                                            <th>Security Group</th>                                                                                        
                                             <th>Action</th>                                            
                                     </tr>
                                     </thead>
@@ -23,24 +22,42 @@
                                       <tr>
                                         <td><%=user.firstName%> <%=user.lastName%></td>
                                         <td></td>
-                                        <td>Administrator</td>                                        
-                                        <td></td>
-                                        <td></td>
+                                        <td>Administrator</td>  
                                         <td><a href="#">Edit</a></td>
                                       </tr>
                                        
-                                    <% users.forEach(function(user){%>
+                                    <% users.forEach(function(user1){%>
+                                      <%if(user.email!=user1.email){%>
                                     <tr>                
-                                    <td><%=user.firstName%> <%=user.lastName%></td>                
-                                    <td><%=user.team_name%></td>
-                                    <td><%=user.security_group%></td>                                                                                                                                                                 
-                                    <td></td>
-                                    <td></td>
-                                    <td><a  class="btn btn-outline-primary btn-sm" href="/assess/assessPerson/<%=user._id%>" role="button">Assess Now >></a></td>                                    
-                                    </tr>                                                                                                  
+                                    <td><a href="/users/skillsbyPerson/<%=user1._id%>"><%=user1.firstName%> <%=user1.lastName%></a></td>                
+                                    <td><%=user1.team_name%></td>
+                                    <td><%=user1.security_group%></td>                                                                                                                                                                 
+                                    
+                                    <td>
+                                      <%if(user1.status=='Cont'){%>
+                                        <a  class="btn btn-outline-success btn-sm" href="/assess/assessPerson/<%=user1._id%>" role="button">Continue Assessment>></a></td>                                    
+                                      <%}else if(user1.status=='Assessed'){%>
+                                        <a  class="btn btn-outline-danger btn-sm" href="/assess/assessPerson/<%=user1._id%>" role="button">Review Assessment>></a></td>                                    
+                                        <%}else{%>
+                                        <a  class="btn btn-outline-primary btn-sm" href="/assess/assessPerson/<%=user1._id%>" role="button">Assess Now >></a></td>                                    
+                                      <%}%>
+                                      
+                                    </tr>                             
+                                    <%}%>                                                                     
                                     <%});%>
                                     </tbody>                                                                                          
                                     </table>                                               
-                            </div>
- 
+                            </div>   
     </div>
+
+<script>
+    $(document).ready(function() {
+      $('#dataTables-access').DataTable({                       
+          compact: false,
+              responsive: true,
+              "scrollX": true,
+              fixedColumns: true,
+              "order": []          
+      });  
+    });
+</script>

@@ -3,44 +3,71 @@
 
 <div class="col-lg-9">
     <% include ./partials/messages %>
-        <h3 class="display-4">People directory !</h3>
+        <h3 class="display-4">People Directory</h3>
         
    
     <a class="btn btn-primary btn-sm" href="/users/addPeople" role="button">Add a Person</a>  
+    <br><br><br>
                                 <div class="table-responsive">   
-                                    <table class="table table-hover table-striped table-hover table-bordered display dt-responsive" cellspacing="0"  name="dataTables-qualifications" style="white-space: nowrap;">                                                                                                       
+                                    <table class="table table-hover table-striped table-hover table-bordered display dt-responsive"  style="display: table-header-group;" id="dataTables-people"cellspacing="0"  name="dataTables-qualifications" style="white-space: nowrap;"> 
                                     <thead>
-                                    <tr>
+                                    <tr class="table-primary">
                                             <th>Name</th>
-                                            <th>Team</th>                                            
-                                            <th>Security Group</th>                                            
-                                            <th>Self Assessment</th>
-                                            <th>Supervisor Assessment</th>
+                                            <th>Team</th>       
+                                            <th>Role</th>                                     
+                                            <th>Country</th>
+                                            <th>City</th>
+                                            <th>Skill Set</th>                                            
+                                            <th>Security Group</th>                                                                                        
                                             <th>Action</th>                                            
                                     </tr>
                                     </thead>
                                     <tbody>
                                       <tr>
                                         <td><%=user.firstName%> <%=user.lastName%></td>
-                                        <td></td>
-                                        <td>Administrator</td>                                        
-                                        <td></td>
-                                        <td></td>
-                                        <td><a href="#">Edit</a></td>
+                                        <td><%=user.team_name%></td>
+                                        <td><%=user.role_name%></td>
+                                        <td><%=user.country%></td>
+                                        <td><%=user.city%></td>
+                                        <td><%=user.skill_name%></td>
+                                        <td><%=user.security_group%></td>
+                                        <td><a href="/users/editPeople/<%=user._id%>">Edit</a></td>
                                       </tr>
                                        
-                                    <% users.forEach(function(user){%>
+                                    <% users.forEach(function(user1){%>
+                                      <%if(user1.email !=user.email){%>
                                     <tr>                
-                                    <td><%=user.firstName%> <%=user.lastName%></td>                
-                                    <td><%=user.team_name%></td>
-                                    <td><%=users.security_group%></td>                                                                                                                                                                 
-                                    <td></td>
-                                    <td></td>
-                                    <td><a  href="#" role="button">Edit</a></td>                                    
-                                    </tr>                                                                                                  
+                                    <td><a href="/users/skillsbyPerson/<%=user1._id%>"><%=user1.firstName%> <%=user1.lastName%></a></td>                
+                                    <td><%=user1.team_name%></td>
+                                    <td><%=user1.role_name%></td>                                    
+                                    <td><%=user1.country%></td>
+                                    <td><%=user1.city%></td>
+                                    <td><%=user1.skill_name%></td>                                    
+                                    <td><%=user1.security_group%></td>                                                                                                                                                                                                                                         
+                                    <td><a  href="/users/editPeople/<%=user1._id%>" role="button">Edit</a>/
+                                      <a href="/users/deletePeople/<%=user1._id%>">Delete</a>
+                                    
+                                    
+                                    </td>                                    
+                                    </tr>                                 
+                                    <%}%>                                                                 
                                     <%});%>
                                     </tbody>                                                                                          
                                     </table>                                               
                             </div>
  
     </div>
+
+
+<script>
+
+  $(document).ready(function() {
+      $('#dataTables-people').DataTable({                       
+          compact: false,
+              responsive: true,
+              "scrollX": true,
+              fixedColumns: true,
+              "order": []          
+      });  
+    });
+</script>

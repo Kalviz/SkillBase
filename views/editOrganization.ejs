@@ -1,20 +1,35 @@
 <br><br>
 <div class="container col-lg-6">
     <% include ./partials/messages %>
-<h2> Set up a new Anthesis Expert-Ease instance</h1>
-<p>Use this form if you would like to set up a new organization in Anthesis Expert-Ease. We will create a brand new instance for you to fill with your specific organization's data.</p>
-<form method="POST" action="/organization/save" autocomplete="off" id="org_form">
+<h2> Update Organization</h1>
+<form method="POST" action="/organization/update/<%=rec._id%>" autocomplete="off" id="org_form">
 <div class="form-group">
         <label class="col-form-label" for="inputDefault">Organization Name</label>
         <span class="mandatory">
-        <input type="text" class="form-control" placeholder="Organization Name" id="organization_name" name="organization_name">
+        <input type="text" class="form-control" placeholder="Organization Name" id="organization_name" name="organization_name" value="<%=rec.organization_name%>" readonly>
     </span>    <p class="help-block"><small>The name of your organization *</small></p>
 
 </div>
-<div class="form-group">
+<div class="form-group" id="org_ind">
         <label class="col-form-label" for="inputDefault">Organization Industry</label>
         <span class="mandatory">
-        <select class="form-control" id="organization_industry" name="organization_industry"><option value="">-- Please select --</option><option value="Accounting">Accounting</option><option value="Advertising">Advertising</option><option value="Aerospace">Aerospace</option><option value="Agriculture">Agriculture</option><option value="Aircraft">Aircraft</option><option value="Airline">Airline</option><option value="Apparel & Accessories">Apparel & Accessories</option><option value="Automotive">Automotive</option><option value="Banking">Banking</option><option value="Biotechnology">Biotechnology</option><option value="Broadcasting">Broadcasting</option><option value="Brokerage">Brokerage</option><option value="Call Centers">Call Centers</option><option value="Cargo Handling">Cargo Handling</option><option value="Chemicals">Chemicals</option>
+        <select class="form-control" id="organization_industry" name="organization_industry" >
+            <option value="">-- Please select --</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Advertising">Advertising</option>
+            <option value="Aerospace">Aerospace</option>
+            <option value="Agriculture">Agriculture</option>
+            <option value="Aircraft">Aircraft</option>
+            <option value="Airline">Airline</option>
+            <option value="Apparel & Accessories">Apparel & Accessories</option>
+            <option value="Automotive">Automotive</option>
+            <option value="Banking">Banking</option>
+            <option value="Biotechnology">Biotechnology</option>
+            <option value="Broadcasting">Broadcasting</option>
+            <option value="Brokerage">Brokerage</option>
+            <option value="Call Centers">Call Centers</option>
+            <option value="Cargo Handling">Cargo Handling</option>
+            <option value="Chemicals">Chemicals</option>
             <option value="Computer">Computer</option>
             <option value="Construction">Construction</option>
             <option value="Consulting">Consulting</option>
@@ -72,7 +87,7 @@
 
 </div>
 
-<div class="form-group">
+<div class="form-group" id="org_size">
         <label class="col-form-label" for="inputDefault">Organization size</label>
         <span class="mandatory">
         <select class="form-control" id="organization_size" name="organization_size"><option value="">-- Please select --</option><option value="1-10">1 - 10 employees</option><option value="11-50">11 - 50 employees</option><option value="51-200">51 - 200 employees</option><option value="201-500">201 - 500 employees</option><option value="501-1000">501 - 1000 employees</option><option value="1001-5000">1,001 - 5,000 employees</option><option value="5001-10000">5,001 - 10,000 employees</option><option value="10000+">10,000+ employees</option>
@@ -83,7 +98,7 @@
 
 <div class="form-group">
         <label for="staticEmail" class="col-form-label">Your role</label>      
-        <input type="text" class="form-control" id="role" name="role" placeholder="Your role"/>
+        <input type="text" class="form-control" id="role" name="role" placeholder="Your role" value="<%=rec.role%>"/>
       
     </span>    <p class="help-block"><small>What is your role in the organization? *</small></p>
 
@@ -92,7 +107,7 @@
 <div class="form-group">
         <label for="staticEmail" class="col-form-label">Your department
             </label>      
-        <input type="text" class="form-control" id="department" name="department" placeholder="Your department"/>
+        <input type="text" class="form-control" id="department" name="department" placeholder="Your department" value="<%=rec.department%>"/>
       
     </span>    <p class="help-block"><small>In which department of the organization do you work? *</small></p>
 
@@ -114,7 +129,7 @@
     </div>
 </div>
 
-<button type="submit" class="btn btn-primary">Accept</button>   
+<button type="submit" class="btn btn-primary">Update</button>   
 </form>
 
 
@@ -148,11 +163,15 @@
 
 <script>
     $(document).ready(function(){
+        console.log('loaded');org_size
+        $('#org_ind option[value="<%=rec.organization_industry%>"]').attr('selected','selected');
+        $('#org_size option[value="<%=rec.organization_size%>"]').attr('selected','selected');
+        
         $("#acceptBtn").click(function(){
         $("#acceptModal").modal("toggle");
         
         });       
-
+        
     });
 
     function submitform(){

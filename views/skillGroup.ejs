@@ -37,8 +37,8 @@
                                       <%};%>
                                       <td><%=sg.skill_group_name%></td>                                   
                                     
-                                    <td><a  href="/skills/edit/<%=rec._id%>" role="button">Edit</a> /
-                                      <a  href="/skills/delete/<%=rec._id%>" role="button">Delete</a></td>  
+                                    <td><a  href="/skills/editSkillGroup/<%=sg._id%>/<%=row%>" role="button">Edit</a> /
+                                      <a  href="/skills/deleteSkillGroup/<%=sg._id%>" role="button">Delete</a></td>  
                                       <%row++%>
                                       <%if(row==rec.skill_group.length){%>
                                       </tr>

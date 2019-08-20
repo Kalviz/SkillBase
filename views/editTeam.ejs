@@ -1,0 +1,29 @@
+<div class="col-lg-9">
+                <% include ./partials/messages %>
+<h2> Edit Team</h2>
+
+<form method="POST" action="/teams/update/<%=rec._id%>" autocomplete="off" id="org_form">
+<div class="form-group">        
+        <div class="row">
+                <div class="col-lg-3">
+                        <p>Team name :</p>
+
+                </div>
+                <div class="col-lg-4">
+                        <input type="text" class="form-control" placeholder="Team Name" id="team_name" name="team_name" value="<%=rec.team_name%>">
+                </div>
+        </div>             
+       
+        
+        <div class="row">
+                <div class="col-lg-3">                        
+                </div>
+                <div class="col-lg-4">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+        </div>
+        <input type="hidden" class="form-control"  id="email" name="email" value="<%=user.email%>">
+
+</form>
+
+</div>

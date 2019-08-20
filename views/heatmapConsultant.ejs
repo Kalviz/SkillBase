@@ -1,0 +1,205 @@
+<div class="col-lg-9">
+        <h2>Heat Map by Consultant.</h2>
+        <form action="/location/heatmapConsultant" method="POST">  
+        <div class="row">                
+                <div class="col-lg-3">
+                                <p>Country :</p>
+                        </div>  
+                <div class="col-lg-4">
+                        <select class="custom-select" id="country" name="country">
+                                <option value="All">All</option>
+                        <%locations.forEach(function(location){%>                                
+                                <option value="<%=location.location_name%>"><%=location.location_name%></option>        
+                        <%});%>                                      
+                        </select>
+                </div>
+        </div>
+        <div class="row">                
+                        <div class="col-lg-3">
+                                        <p>Skill :</p>
+                                </div>  
+                        <div class="col-lg-4">
+                                <select class="custom-select" id="skill_name" name="skill_name">  
+                                <%skills.forEach(function(skill){%>
+                                        <option value="<%=skill.skill_name%>"><%=skill.skill_name%></option>        
+                                <%});%>                                      
+                                </select>
+                        </div>
+                </div>
+        <div class="row">                
+                <div class="col-lg-3">
+                               
+                        </div>  
+                <div class="col-lg-4">
+                <button class="bnt btn-primary" type="submit">Find</button>
+                </div>
+        </div>
+                
+        </form>
+
+                <br><br><br>
+<%if(show=='true'){%>
+        <div id="heatmaptable">
+                <table>
+                        <table class="table table-hover table-striped table-bordered display dt-responsive" id="dataTable-heatmapcons" cellspacing="0"  name="dataTables-qualifications" style="display: table-header-group;white-space: nowrap;width: 100%;table-layout: fixed;">                                                                                                       
+                                                                                                                               
+                                <tr class="table-primary">
+                                        <th>Skill Set</th>
+                                        <th>Group</th>
+                                        <th>Skill</th>
+                                        <th style="width: 10rem">Total Average Proficiency</th>
+                                        <%users.forEach(function(user1){%>
+                                        <th><%=user1.firstName%> <%=user1.lastName%></th>
+                                        <%});%>
+                                        
+                                </tr>
+                                
+                                <tbody>
+                                        <%recs.forEach(function(rec){%>
+                                                <tr class="table-info">
+                                                <td style="font-weight:bold;color:black"><b><%=rec.skill_name%></b></td>
+                                                <%var sg_row=0%>
+                                                <%rec.skill_group.forEach(function(sg){%>
+                                                  <%if(sg_row!=0){%>
+                                                    <tr class="table-info">
+                                                      <td></td>
+                                                  <%}%>
+                                                  <td style="font-weight:bold;color: black"><%=sg.skill_group_name%></td>              
+                                                      <%var sk_row=0;avgtot=0;%>
+                                                      <%if(sg.skills.length==0){%>
+                                                      <td></td>
+                                                      <td></td>
+                                                      </tr>
+                                                      td*2
+                                                      <%}else{%>
+                                                      
+                                                        <%}%>
+                                                       <%if(sk_row==0){%>
+                                                        <td></td>
+                                                        <td id="avgtot<%=sg_row%>" align="center" style="font-weight:bold;color: black">"avgtot<%=sg_row%><%=sk_row%>"</td>
+                                                        
+                                                        <%var count=0%>
+                                                        <%users.forEach(function(user1){%>
+                                                                <td id="user<%=sg_row%><%=count%>" align="center" style="font-weight:bold;color: black">user<%=sg_row%><%=count%></td>
+                                                                <%count++%>        
+                                                        <%});%>
+                                                       </tr>
+                                                       <tr class="table-default">
+                                                        <td></td>
+                                                        <td></td>
+
+                                                        <%}%> 
+                                                      <%sg.skills.forEach(function(skill){%>
+                                                        <%if(sk_row!=0){%>
+                                                          <tr class="table-default">
+                                                            <td></td>
+                                                            <td></td>  
+                                                        <%}%>
+                                                        <td><%=skill.skill%></td>
+                                                        <%var proftot=0%>
+                                                        <td id="<%=sg_row%><%=sk_row%>" align="center"  style="font-weight:bold;color:black"></td>
+                                                        <%var count=0;%>
+                                                        <%users.forEach(function(user1){%>
+                                                              <%var useravgtot =0;%>  
+                                                                <%user1.skillset[0].skill_group[sg_row].skills.forEach(function(skill){%>
+                                                                        <%useravgtot += skill.proficiency%>
+                                                                <%});%>
+
+                                                                <script>
+                                                                        <%var tdcol ="",x=Math.round( (useravgtot/user1.skillset[0].skill_group[sg_row].skills.length)  * 10 ) / 10;%>
+                                                                        <%if (x <3){%>
+                                                                                <%tdcol = "red"%>
+                                                                        <%}else if(x >=3 && x < 4){%>
+                                                                                <%tdcol = "orange"%>;   
+                                                                        <%}else if(x >=4 && x <=5){%>
+                                                                                <%tdcol = "green"%>
+                                                                        <%}else{%>
+                                                                                <%tdcol=""%>
+                                                                        <%}%>                                                                        
+                                                                        document.getElementById("user<%=sg_row%><%=count%>").style.backgroundColor= "<%=tdcol%>";
+                                                                        document.getElementById("user<%=sg_row%><%=count%>").innerHTML   = <%=x%> ;
+                                                                </script>
+                                                                <%count++;%>
+
+
+
+
+                                                                <script>
+                                                                        <%var prof =user1.skillset[0].skill_group[sg_row].skills[sk_row].proficiency;%>
+                                                                        <%var tdcol =""%>
+                                                                        <%if (prof <3){%>
+                                                                                <%tdcol = "red"%>
+                                                                        <%}else if(prof >=3 && prof < 4){%>
+                                                                                <%tdcol = "orange"%>;   
+                                                                        <%}else if(prof >=4 && prof <=5){%>
+                                                                                <%tdcol = "green"%>
+                                                                        <%}else{%>
+                                                                                <%tdcol=""%>
+                                                                        <%}%>
+                                                                        
+                                                                </script>
+                                                                <td align="center"  style="font-weight:bold;background-color:<%=tdcol%>"><%=prof%></td>
+                                                                <%proftot+= user1.skillset[0].skill_group[sg_row].skills[sk_row].proficiency%>
+                                                                <%});%>
+                                                        
+                                                                <script>
+                                                                        <%var avg = proftot/users.length%>
+                                                                        <%var tdcol =""%>
+                                                                        <%if (avg <3){%>
+                                                                                <%tdcol = "red"%>
+                                                                        <%}else if(avg >=3 && avg < 4){%>
+                                                                                <%tdcol = "orange"%>;   
+                                                                        <%}else if(avg >=4 && avg <=5){%>
+                                                                                <%tdcol = "green"%>
+                                                                        <%}else{%>
+                                                                                <%tdcol=""%>
+                                                                        <%}%>
+                                                                        document.getElementById("<%=sg_row%><%=sk_row%>").innerHTML   = "<%=Math.round( (proftot/users.length)  * 10 ) / 10;%>";
+                                                                        document.getElementById("<%=sg_row%><%=sk_row%>").style.backgroundColor= "<%=tdcol%>";
+                                                                        <%avgtot =Math.round( (proftot/users.length)  * 10 ) / 10;%>
+                                                                </script>
+                                                          
+                                                       
+                                                        <%sk_row++;%>
+                                                      </tr>
+                                                        <%});%>
+                                                        
+                                                        <script>                                                                
+                                                                <%var tdcol =""%>
+                                                                <%if (avgtot <3){%>
+                                                                        <%tdcol = "red"%>
+                                                                <%}else if(avgtot >=3 && avgtot < 4){%>
+                                                                        <%tdcol = "orange"%>;   
+                                                                <%}else if(avgtot >=4 && avgtot <=5){%>
+                                                                        <%tdcol = "green"%>
+                                                                <%}else{%>
+                                                                        <%tdcol=""%>
+                                                                <%}%>
+                                                                document.getElementById("avgtot<%=sg_row%>").innerHTML   = "<%=avgtot%>";
+                                                                document.getElementById("avgtot<%=sg_row%>").style.backgroundColor= "<%=tdcol%>";
+                                                        </script>
+                                                    </tr>
+                                                  <%sg_row++;%>
+                                                  <%});%> 
+                                                    
+                                              <% });%>  
+                                </tbody>
+                        </thead>
+                </table>
+               
+        </div>
+                <%}%>
+</div>
+
+
+<script>
+        $(document).ready(function() {
+            $('#dataTable-heatmapcons').DataTable({                       
+                compact: false,
+                    responsive: true,
+                    "scrollX": true,
+                    fixedColumns: true,
+                    "order": []          
+            });  
+        });
+</script>

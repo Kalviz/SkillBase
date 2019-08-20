@@ -1,9 +1,9 @@
 <div class="form-group col-lg-9">
         <% include ./partials/messages %>
             <h3 class="display-4">Assess People !</h3>
-    <h1><%=rec.firstName%> <%=rec.lastName%></h1>
-    <h2>Skill Set : <b><%=rec.skillset[0].skill_name%></b></h2>
-    <form action="/assess/submitAssessment" method="POST">
+    <h1><%=rec.firstName%> <%=rec.lastName%> </h1>
+    <h2>Skill : <b><%=rec.skillset[0].skill_name%></b></h2>
+    <form action="/assess/submitAssessment" method="POST" id="testform">
     
     <div class="table-responsive">   
             <table class="table table-hover table-striped table-hover table-bordered display dt-responsive" cellspacing="0"  name="dataTables-qualifications" style="padding:0px; margin:0px;white-space: nowrap;" >                                                                                                       
@@ -42,15 +42,11 @@
                             <%}%>
                             <td><%=skill.skill%></td>
                             
-                            <td align="center"><input type="radio" class="form-group" name="skillset[0]skill_group[<%=sg_row%>]skills[<%=sk_row%>]proficiency" id="<%=skill.skill%>1" value="1"   <%=skill.proficiency==1 ? checked="checked":""%>/>
-                                
-                            <td align="center"><input type="radio" class="form-group" name="skillset[0]skill_group[<%=sg_row%>]skills[<%=sk_row%>]proficiency" id="<%=skill.skill%>2" value="2"  <%=skill.proficiency==2 ? checked="checked":""%>></td>
-                                
-                            <td align="center"><input type="radio" class="form-group" name="skillset[0]skill_group[<%=sg_row%>]skills[<%=sk_row%>]proficiency" id="<%=skill.skill%>3" value="3"   <%=skill.proficiency==3 ? checked="checked":""%>></td>
-                                
-                            <td align="center"><input type="radio" class="form-group" name="skillset[0]skill_group[<%=sg_row%>]skills[<%=sk_row%>]proficiency" id="<%=skill.skill%>4" value="4"  <%=skill.proficiency==4 ? checked="checked":""%>></td>
-                                
-                            <td align="center"><input type="radio" class="form-group" name="skillset[0]skill_group[<%=sg_row%>]skills[<%=sk_row%>]proficiency" id="<%=skill.skill%>5" value="5"   <%=skill.proficiency==5 ? checked="checked":""%>></td>                                                       
+                            <td align="center"><input type="radio" class="form-group" name="skillset[0]skill_group[<%=sg_row%>]skills[<%=sk_row%>]proficiency" id="<%=skill._id%>" value="1"   onclick="updateProf(1,<%=sg_row%>,<%=sk_row%>);"   <%=skill.proficiency==1 ? checked="checked":""%>></td>
+                            <td align="center"><input type="radio" class="form-group" name="skillset[0]skill_group[<%=sg_row%>]skills[<%=sk_row%>]proficiency" id="<%=skill._id%>" value="2"  onclick="updateProf(2,<%=sg_row%>,<%=sk_row%>);"<%=skill.proficiency==2 ? checked="checked":""%>></td>                                
+                            <td align="center"><input type="radio" class="form-group" name="skillset[0]skill_group[<%=sg_row%>]skills[<%=sk_row%>]proficiency" id="<%=skill._id%>" value="3"   onclick="updateProf(3,<%=sg_row%>,<%=sk_row%>);"<%=skill.proficiency==3 ? checked="checked":""%>></td>                                
+                            <td align="center"><input type="radio" class="form-group" name="skillset[0]skill_group[<%=sg_row%>]skills[<%=sk_row%>]proficiency" id="<%=skill._id%>" value="4"  onclick="updateProf(4,<%=sg_row%>,<%=sk_row%>);"<%=skill.proficiency==4 ? checked="checked":""%>></td>                                
+                            <td align="center"><input type="radio" class="form-group" name="skillset[0]skill_group[<%=sg_row%>]skills[<%=sk_row%>]proficiency" id="<%=skill._id%>" value="5"   onclick="updateProf(5,<%=sg_row%>,<%=sk_row%>);"<%=skill.proficiency==5 ? checked="checked":""%>></td>                                                       
                             <%sk_row++;%>
                           </tr>
                             <%});%>
@@ -61,7 +57,7 @@
         </body>
             </table>
         </div>
-        
+        <input type="hidden" name="userid" id="userid" value="<%=rec._id%>">
         <div class="form-group col-lg-13" align="right" >
                 <button type="submit" class="btn btn-primary">Submit</button>
         </div>
@@ -73,10 +69,8 @@
 <script>
 function saveAssess(id){
     var x = document.getElementById(id).value.split('/');
-
     console.log(x[0]);
-    $.ajax({
-                
+    $.ajax({                
                 type: 'POST',						
                 contentType: 'application/json',
                 url: '/assess/saveAssess/'+x[0]+'/'+x[1]+'/'+x[2],						
@@ -85,6 +79,34 @@ function saveAssess(id){
                     console.log('success');
                 }
             });
+    }
 
-}
+
+    function updateProf(val,sg_count,sk_count){
+        console.log('dfgdfgdfg '+document.getElementById("userid").value);
+        var x= document.getElementById("userid").value;
+        $.ajax({                
+                type: 'POST',						
+                contentType: 'application/json',
+                url: '/assess/updateProf/'+val+'/'+sg_count+'/'+sk_count+'/'+x,						
+                success: function(res,custid) {
+
+                    console.log('success');
+                }
+            });
+    }
+    
+    function test123(id,test){
+        console.log('id '+id);
+        $.ajax({                
+                type: 'POST',						
+                contentType: 'application/json',
+                url: '/assess/updateProf/'+id,						
+                success: function(res,custid) {
+
+                    console.log('success');
+                }
+            });
+    }
+    
 </script>

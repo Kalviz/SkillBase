@@ -1,8 +1,8 @@
 <div class="col-lg-9">
                 <% include ./partials/messages %>
-<h2> Add Skill</h2>
+<h2> Edit Skill Group</h2>
 
-<form method="POST" action="/skills/save" autocomplete="off" id="org_form">
+<form method="POST" action="/skills/updateSkillGroup/<%=rec.skill_group[count]._id%>" autocomplete="off" id="org_form">
 <div class="form-group">        
         <div class="row" hidden>
                 <div class="col-lg-3">
@@ -15,29 +15,21 @@
         
         <div class="row">                
                 <div class="col-lg-3">
-                        <p>Skill Name :</p>
+                        <p>Skill Group Name :</p>
                 </div>  
                 <div class="col-lg-4">
-                        <input type="text" class="form-control" placeholder="Skill Name" id="skill_name" name="skill_name">
+                        <input type="text" class="form-control" placeholder="Skill Group Name" id="skill_group_name" name="skill_group_name" value="<%=rec.skill_group[count].skill_group_name%>">
                 </div>
-                </div>  
+                </div>
                 
          </div>
-         <div class="row">
-                        <div class="col-lg-3">
-                                        <p>Description :</p>
-                                </div>  
-                                <div class="col-lg-4">
-                                                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-                                </div>
-                                </div>
-         
+
         <div>
                 <div class="row">
                 <div class="col-lg-3">
                 </div>
                 <div class="col-lg-4">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                 </div>
                 </div>
         </div>

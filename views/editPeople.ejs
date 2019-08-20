@@ -1,0 +1,138 @@
+
+<br><br>
+<div class="col-lg-6">
+                <% include ./partials/messages %>
+<h2> Edit Person</h1>
+
+<form method="POST" action="/users/updatePeople/<%=rec._id%>" autocomplete="off" id="org_form">
+
+<div class="form-group">
+        <label class="col-form-label" for="inputDefault">First Name</label>
+        <span class="mandatory">
+        <input type="text" class="form-control" placeholder="First Name" id="firstName" name="firstName" value="<%=rec.firstName%>">
+    </span>    
+
+</div>
+<div class="form-group">
+        <label class="col-form-label" for="inputDefault">Last Name</label>
+        <span class="mandatory">
+        <input type="text" class="form-control" placeholder="Last Name" id="lastName" name="lastName" value="<%=rec.lastName%>">
+    </span>
+
+</div>
+<div class="row">                
+        <div class="col-lg-3">
+                        <p>Team :</p>
+                </div>  
+        <div class="col-lg-4">
+                <select class="custom-select" id="team_name" name="team_name">  
+                <%teams.forEach(function(team){%>
+                        <option value="<%=team.team_name%>" <%=rec.team_name == team.team_name ? 'selected':''%>><%=team.team_name%></option>        
+                <%});%>                                      
+                </select>
+        </div>
+</div>
+
+<div class="row">                
+        <div class="col-lg-3">
+                        <p>Role :</p>
+                </div>  
+        <div class="col-lg-4">
+                <select class="custom-select" id="role_name" name="role_name">
+                <%roles.forEach(function(role){%>
+                        <option value="<%=role.role_name%>" <%=rec.role == role.role_name ? 'selected':''%>><%=role.role_name%></option>        
+                <%});%>                                      
+                </select>
+        </div>
+</div>
+<div class="row">                
+        <div class="col-lg-3">
+                        <p>City :</p>
+                </div>  
+        <div class="col-lg-4">
+                <input class="form-control" type="text" name="city" id="city" placeholder="City" value="<%=rec.city%>">
+        </div>
+</div>
+
+<div class="row">                
+        <div class="col-lg-3">
+                        <p>Country :</p>
+                </div>  
+        <div class="col-lg-4">
+                <select class="custom-select" id="country" name="country">
+                <%locations.forEach(function(location){%>
+                        <option value="<%=location.location_name%>" <%= rec.country == location.location_name ? 'selected':''%>><%=location.location_name%></option>        
+                <%});%>                                      
+                </select>
+        </div>
+</div>
+<div class="row" hidden>
+        <div class="col-lg-3">
+                        <p>Skill :</p>
+                </div>  
+        <div class="col-lg-4">
+                <select class="custom-select" id="skill_name" name="skill_name">  
+                <%skills.forEach(function(skill){%>
+                        <option value="<%=skill.skill_name%>" ><%=skill.skill_name%></option>        
+                <%});%>                                      
+                </select>
+        </div>
+</div>
+
+<div class="row">
+        <div class="col-lg-3">
+                        <p>Organization :</p>
+                </div>  
+        <div class="col-lg-4">
+                <select class="custom-select" id="organization" name="organization">  
+                <%orgs.forEach(function(org){%>
+                        <option value="<%=org.organization_name%>" <%= rec.organization == org.organization_name ? 'selected':''%>><%=org.organization_name%></option>        
+                <%});%>                                      
+                </select>
+        </div>
+</div>
+
+<div class="row">                
+        <div class="col-lg-3">
+                        <p>Security Group :</p>
+                </div>  
+        <div class="col-lg-4">
+                <select class="custom-select" id="security_group" name="security_group">  
+                        <option value="Administrator" <%= rec.security_group=='Administrator' ? 'selected':''%>>Administrator</option>        
+                        <!-- <option value="Supervisor">Supervisor</option>   -->
+                        <option value="General Staff" <%= rec.security_group=='General Staff' ? 'selected':''%>>General Staff</option>  
+                </select>
+        </div>
+</div>
+
+<div>
+<div>
+        <button type="submit" class="btn btn-primary" >Update</button>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</form>
+
+
+<script>
+function hideLogin(){
+if(document.getElementById("login").value == "Disabled"){
+        document.getElementById("loginBlock").style.display = "none";
+}else{
+        document.getElementById("loginBlock").style.display = "block";
+        document.getElementById("email").value = "";
+        document.getElementById("password1").value = "";
+        document.getElementById("password2").value = "";
+}
+
+
+}
+</script>

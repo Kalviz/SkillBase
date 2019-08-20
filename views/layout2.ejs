@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Skills Base</title><meta charset="utf-8"><link rel="stylesheet" type="text/css" href="//cdn.skills-base.com/bootstrap/css/bootstrap.min.css"/><link rel="stylesheet" type="text/css" media="screen" href="//cdn.skills-base.com/bootstrap/css/bootstrap-responsive.min.css"/><link rel="stylesheet" type="text/css" media="screen" href="//cdn.skills-base.com/css/skills-base.css"/><link rel="stylesheet" type="text/css" media="print" href="//cdn.skills-base.com/css/skills-base-print.css"/><link rel="stylesheet" type="text/css" href="//cdn.skills-base.com/css/ui-message.css"/><link rel="stylesheet" type="text/css" href="//cdn.skills-base.com/chosen/chosen.min.css"/>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,700"/>
+  <!--[if lt IE 9]><link
+  rel="stylesheet" type="text/css" href="//cdn.skills-base.com/css/ie-legacy.css" />
+  <![endif]--> <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> <script type="text/javascript" src="//cdn.skills-base.com/bootstrap/plugins/bootstrap-tooltip.js"></script> <script type="text/javascript" src="//cdn.skills-base.com/bootstrap/plugins/bootstrap-popover.js"></script> <script type="text/javascript" src="//cdn.skills-base.com/js/ui-message.js"></script> <script type="text/javascript" src="//cdn.skills-base.com/js/skillsbase.popover.js"></script> <script type="text/javascript" src="//cdn.skills-base.com/chosen/chosen.jquery.min.js"></script> <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4B-bBt44qu1hzl7Yvk2Vr1ZO1sDxv1Gc"></script> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/> <script type="text/javascript">var baseUrl='';var cdnUrl='//cdn.skills-base.com';var dateFormat='Y-m-d';$(document).ready(function(){$('.view-changer').click(function(){$('#view-changer-modal').modal();});$('.search-query').after($('<span></span>').addClass('clear-input'));$(document).on('click touchstart','.clear-input',function(){$(this).prev('input').val('').trigger('keyup').focus();});$('#feedback_tab').mouseover(function(){$(this).stop(true).animate({'right':-35},{duration:50,queue:false}).animate({'opacity':1},{duration:200,queue:false});$('#feedback-tab-inner').animate({'padding-top':13},{duration:50,queue:false});});$('#feedback_tab').mouseout(function(){$(this).stop(true).animate({'right':-65},{duration:50,queue:false}).animate({'opacity':0.5},{duration:200,queue:false});$('#feedback-tab-inner').animate({'padding-top':0},{duration:50,queue:false});});$('.btn-submitonce').click(function(){var name_attr=$(this).attr('name');var value_attr=$(this).attr('value');if(typeof name_attr!==typeof undefined&&name_attr!==false&&typeof value_attr!==typeof undefined&&value_attr!==false){console.log('Submitonce button cannot define name or value attributes');return false;}var message='Saving...';if($(this).data('submitonce-message'))message=$(this).data('submitonce-message')+'...';var form=$(this).closest('form');var span=$('<span>&nbsp; <img src="//cdn.skills-base.com/images/ajax-loader.gif" /> '+message+'</span>');$(this).replaceWith(span);$('.submitonce-disable').prop('disabled',true);$('.submitonce-disable').css('pointer-events','none');if(navigator.userAgent.toLowerCase().indexOf('firefox')>-1){var button=$("<input type='submit' style='display: none'/>");form.append(button);button.trigger('click');}else
+  form.submit();});$.ajaxPrefilter(function(options,originalOptions,jqXHR){if(options.type===undefined)return;if(options.type.toLowerCase()!=='post')return;options.data+='&formToken=AgU39d29FY9WnhuBVz3dI29LqrLWcmgp';});$('.sb-select').chosen({disable_search_threshold:5});adjustMenu();});$(window).resize(adjustMenu);$('a.dropdown-toggle, .dropdown-menu a').on('touchstart',function(e){e.stopPropagation();});function adjustMenu(){if($('#page-content-container').height()<$('#navigation-menu-inner').height())$('#navigation-menu').addClass('full-height');else
+  $('#navigation-menu').removeClass('full-height');}</script> <link rel="apple-touch-icon" sizes="57x57" href="//cdn.skills-base.com/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="//cdn.skills-base.com/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="//cdn.skills-base.com/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="//cdn.skills-base.com/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="//cdn.skills-base.com/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="//cdn.skills-base.com/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="//cdn.skills-base.com/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="//cdn.skills-base.com/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="//cdn.skills-base.com/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="//cdn.skills-base.com/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="//cdn.skills-base.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="//cdn.skills-base.com/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="//cdn.skills-base.com/favicon-16x16.png"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="//cdn.skills-base.com/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"></head><body data-baseurl=""><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid" style="padding-right: 0px;">
+  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  </button>
+  <a class="brand" href="/"><img src="//cdn.skills-base.com/images/skills-base-logo-small-inv.png" style="width: 120px; margin-top: -3px;"/></a><div class="nav-collapse">
+  <span class="brand" style="padding-top: 11px;" id="org-name">asd</span><ul class="nav pull-right"><li class="dropdown">
+  <a id="current_user" class="dropdown-toggle" style="" data-toggle="dropdown" href="#">
+  <i class="icon-user icon-white" style="margin-top: 2px;"></i> &nbsp;Gihantha Ratnayake
+  <b class="caret" style=""></b>
+  </a><ul class="dropdown-menu"><li>
+  <a href="/notification">Notifications							<span class="notification-alert">0</span>					</a></li><li>
+  <a href="/people/view">My summary</a></li><li class="dropdown-submenu">
+  <a href="#">Security Group</a><ul class="dropdown-menu"><li>
+  <a href="/people/changegroup/g/1">										<i class="icon-ok icon-white"></i> Administrator								</a></li><li>
+  <a href="/people/changegroup/g/2">										&nbsp; &nbsp; &nbsp;Supervisor								</a></li><li>
+  <a href="/people/changegroup/g/3">										&nbsp; &nbsp; &nbsp;General staff								</a></li></ul></li><li>
+  <a href="/people/prefs">Preferences</a></li><li class="divider"></li><li><a href="/login/logout">Logout</a></li></ul></li></ul><ul class="nav pull-right" style="top: 5px; width: 180px; direction: ltr; margin-left: 5px;"><li class="dropdown">
+  <span class="input-prepend" style="width: 180px;"><form method="get" action="/search" style="margin: 0; width: 180px;">
+  <input type="text" id="global-search" class="input-medium search-query" maxlength="50" placeholder="Search..." name="q" style="border-radius: 10px;"/></form>
+  </span></li></ul><ul class="nav pull-right hidden-desktop hidden-tablet"><li class="dropdown open"><ul class="dropdown-menu type-dropdown"><li class=""></li><li class="dropdown-header">SUMMARIES</li><li>
+  <a id="menu-mysummary" href="/people/view">My summary</a></li><li>
+  <a id="menu-orgsummary" href="/org/view">My organization</a></li><li class=""></li><li class="dropdown-header">SUPERVISOR</li><li>
+  <a id="menu-assesspeople" href="/complete/list">Assess people</a></li><li class=""></li><li class="dropdown-header">DIRECTORIES</li><li>
+  <a id="menu-locations" href="/locations">Locations</a></li><li>
+  <a id="menu-people" href="/people">People</a></li><li>
+  <a id="menu-qualifications" href="/qualifications">Qualifications</a></li><li>
+  <a id="menu-roles" href="/roles">Roles</a></li><li>
+  <a id="menu-skills" href="/skills">Skills</a></li><li>
+  <a id="menu-teams" href="/team">Teams</a></li><li class=""></li><li class="dropdown-header">SEARCH</li><li>
+  <a id="menu-globalsearch" href="/search">Global search</a></li><li>
+  <a id="menu-peoplefinder" href="/search/peoplefinder">People finder</a></li><li class=""></li><li class="dropdown-header">REPORTING</li><li>
+  <a id="menu-activitylog" href="/reporting/activitylog">Activity log</a></li><li>
+  <a id="menu-reporting" href="/reporting">Reports</a></li><li class=""></li><li class="dropdown-header">ADMIN</li><li>
+  <a id="menu-attachments" href="/attachment">Attachments</a></li><li>
+  <a id="menu-authentication" href="/admin/authentication">Authentication</a></li><li>
+  <a id="menu-billing" href="/admin/billing">Billing</a></li><li>
+  <a id="menu-licensing" href="/admin/licensing">Licensing</a></li><li>
+  <a id="menu-ratingscheme" href="/admin/ratingscheme">Rating Scheme</a></li><li>
+  <a id="menu-securitygroups" href="/securitygroups">Security Groups</a></li><li>
+  <a id="menu-settings" href="/admin/settings">Settings</a></li></ul></li></ul></div></div></div></div><div class="row-fluid full-height"><div class="hidden-phone full-height" id="navigation-menu" style="width: 190px; min-width: 190px; max-width: 190px; vertical-align: top; padding: 0; position: absolute;"><div id="navigation-menu-inner" class="well sidebar-nav"><ul class="nav nav-list type-sidebar"><li class="divider"></li><li class="nav-header">SUMMARIES</li><li>
+  <a id="menu-mysummary" href="/people/view">My summary</a></li><li>
+  <a id="menu-orgsummary" href="/org/view">My organization</a></li><li class="divider"></li><li class="nav-header">SUPERVISOR</li><li>
+  <a id="menu-assesspeople" href="/complete/list">Assess people</a></li><li class="divider"></li><li class="nav-header">DIRECTORIES</li><li>
+  <a id="menu-locations" href="/locations">Locations</a></li><li>
+  <a id="menu-people" href="/people">People</a></li><li>
+  <a id="menu-qualifications" href="/qualifications">Qualifications</a></li><li>
+  <a id="menu-roles" href="/roles">Roles</a></li><li>
+  <a id="menu-skills" href="/skills">Skills</a></li><li>
+  <a id="menu-teams" href="/team">Teams</a></li><li class="divider"></li><li class="nav-header">SEARCH</li><li>
+  <a id="menu-globalsearch" href="/search">Global search</a></li><li>
+  <a id="menu-peoplefinder" href="/search/peoplefinder">People finder</a></li><li class="divider"></li><li class="nav-header">REPORTING</li><li>
+  <a id="menu-activitylog" href="/reporting/activitylog">Activity log</a></li><li>
+  <a id="menu-reporting" href="/reporting">Reports</a></li><li class="divider"></li><li class="nav-header">ADMIN</li><li>
+  <a id="menu-attachments" href="/attachment">Attachments</a></li><li>
+  <a id="menu-authentication" href="/admin/authentication">Authentication</a></li><li>
+  <a id="menu-billing" href="/admin/billing">Billing</a></li><li>
+  <a id="menu-licensing" href="/admin/licensing">Licensing</a></li><li>
+  <a id="menu-ratingscheme" href="/admin/ratingscheme">Rating Scheme</a></li><li>
+  <a id="menu-securitygroups" href="/securitygroups">Security Groups</a></li><li>
+  <a id="menu-settings" href="/admin/settings">Settings</a></li></ul></div></div><div id="page-content-container" class="container-fluid"><div id="page-content" class="span12"><script src="/js/jquery.dataTables.js+skillsbase.modalTable.js.pagespeed.jc.7Xq0Ezn8Dn.js"></script><script>eval(mod_pagespeed_fcQhpkiFY0);</script> <script>eval(mod_pagespeed_AaIHYDh2iG);</script> <script type="text/javascript">var myLatlng=null;var marker=null;var map=null;$(document).ready(function(){function initialize(){myLatlng=new google.maps.LatLng(-25.363882,131.044922)
+  var mapOptions={zoom:1,center:myLatlng}
+  map=new google.maps.Map(document.getElementById('map-canvas'),mapOptions);google.maps.event.addListener(map,'zoom_changed',function(){$('#zoom_field').val(map.getZoom());});google.maps.event.addListener(map,'click',function(event){if(marker){marker.setMap(null);marker=null;}marker=createMarker(event.latLng);$('#latitude_field').val(event.latLng.lat());$('#longitude_field').val(event.latLng.lng());google.maps.event.addListener(marker,'dragend',function(e){$('#latitude_field').val(e.latLng.lat());$('#longitude_field').val(e.latLng.lng());});});}google.maps.event.addDomListener(window,'load',initialize);$('#location_name').focus();});function createMarker(latlng){m=new google.maps.Marker({position:latlng,draggable:true,map:map});return m;}</script> <style type="text/css">.accordion-heading{background-color:#eee}.supervisor-row{margin-bottom:5px}#root>ins,#root>a{display:none}ul>#root{position:relative;left:-20px}#root>i{display:none}#map-canvas img{max-width:none!important}</style><div class="row-fluid"><div class="span12"><h2>Add new location</h2></div></div><br/><div class="row-fluid"><div class="span12"><form method="post" id="locationForm" class="form-horizontal"><div class="control-group">
+  <label class="control-label" for="name">Location name</label><div class="controls mandatory">
+  <input type="text" maxlength="45" name="name" id="location_name" class="input-xlarge" value=""/></div></div><div class="control-group">
+  <label class="control-label"></label><div class="controls"><div id="map-canvas" style="height: 400px; width: 100%; border: solid 1px #bbb;"></div>
+  <span class="help-inline">Click the map to drop a marker which can then be dragged into position.  Your zoom level will also be saved.</span>
+  <input type="text" name="latitude" id="latitude_field" value=""/>
+  <input type="text" name="longitude" id="longitude_field" value=""/>
+  <input type="hidden" name="zoom" id="zoom_field" value="1"/></div></div><div class="control-group span5">
+  <a href="/locations" class="btn pull-right">Cancel</a>
+  <input type="submit" value="Save location" class="btn btn-primary pull-right" style="margin-right: 10px;"/></div></fieldset><input type="hidden" name="formToken" value="AgU39d29FY9WnhuBVz3dI29LqrLWcmgp"/></form></div></div></div></div><div id="footer-container" class="container-fluid">
+  <footer><p>&copy; Skills Base Pty. Ltd. 2019 ACN 162 216 444
+  <span class="hidden-phone">|</span>
+  <br class="hidden-tablet hidden-desktop"/>
+  <a target="_blank" href="http://wiki.skills-base.com">Help</a> |
+  <a target="_blank" href="http://wiki.skills-base.com/index.php?title=Terms_and_Conditions">Terms & Conditions</a> |
+  <a target="_blank" href="https://www.skills-base.com/contact?name=Gihantha+Ratnayake&email=gihantha%40gmail.com">Contact Us</a></p>
+  </footer></div></div><style type="text/css">.view-changer{border-bottom:none!important;cursor:auto!important}</style> <script src="//cdn.skills-base.com/bootstrap/plugins/bootstrap-dropdown.js"></script> <script src="//cdn.skills-base.com/bootstrap/plugins/bootstrap-collapse.js"></script> <script src="//cdn.skills-base.com/bootstrap/plugins/bootstrap-modal.js"></script></body></html>
