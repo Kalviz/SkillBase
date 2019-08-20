@@ -20,29 +20,13 @@ router.post('/save',(req, res) =>{
                 department,
                 link
             });
-            
+            console.log('newOrganization._id :'+newOrganization._id);
             newOrganization.save()
             .then(user=>{
                 req.flash('success_msg',
                         'New Organization Created : '+organization_name);
-
-                var mailOptions = {
-                    from: 'lcsapp.lk@gmail.com',
-                    to: email,
-                    subject: 'Your Skills Base system is ready to go',
-                    text: 'Your Skills Base instance has been set up and is ready to go!'+
-                    '\n\n The first thing to do is create your account. Click the following link (or copy and paste into your web browser) to get started:'+
-                    '\n\n http://51.52.8.2:5000/users/register/'
-                };
                 
-                req.app.get('mailtrans').sendMail(mailOptions, function(error, info){
-                    if (error) {
-                    console.log(error);
-                    } else {
-                    console.log('Email sent: ' + info.response);
-                    }
-                });                 
-                res.render('join',{nav:true,email:email});
+                res.redirect('/dashboard');
 
             }).catch(err => console.log(err));
         }
@@ -55,17 +39,63 @@ router.post('/save',(req, res) =>{
         }
     }).catch(err => console.log(err));
 
+});
+
+
+router.post('/update/:_id',(req, res) =>{
+    const {organization_name,organization_industry,organization_size,role,department,link,email} =req.body;
+    console.log('org name '+email);
+    Organization.findOne({_id:req.params._id}).then(rec =>{
+        if(rec){       
+            Organization.update({_id:req.params._id},
+                {
+                    organization_industry:organization_industry,
+                    organization_size:organization_size,
+                    role:role,
+                    department:department
+                }).then(rt=>{
+                    req.flash('success_msg',
+                    'Organization Update : '+organization_name);
+            
+                    res.redirect('/organization/index');
+                });
+        }
+        else{
+            req.flash('error_msg',
+                        'Organization Already Exists!');
+            
+            res.render('join',{nav:true});
+
+        }
+    }).catch(err => console.log(err));
+
 })
 
+router.get('/index',ensureAuthenticated,(req,res)=>{
+    Organization.find().then(orgs=>{
+        res.render('organization',{nav:'true',orgs:orgs});
+    });
+    
+});
+
+router.get('/register',(req,res) =>{
+    res.render('orglogin',{nav:'true'});
+  });
 
 
-router.get('/create',(req, res)=>{
+  router.get('/edit/:_id',(req,res) =>{
+    Organization.findOne({_id:req.params._id}).then(rec=>{
+        res.render('editOrganization',{nav:'true',rec:rec});
+    });    
+  });
+
+/* router.get('/create',(req, res)=>{
     Organization.find().then(orgs=>{
         res.render('createOrganization',{orgs:orgs,nav:'false'});
 
     });   
 
-});
+}); */
 
 
 

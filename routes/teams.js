@@ -10,7 +10,7 @@ const Team = require('../models/Team');
 
 router.get('/index',ensureAuthenticated,(req,res) => {
     console.log('test');
-    Team.find({email:req.user.email}).then(recs =>{
+    Team.find({organization:req.user.organization}).then(recs =>{
         res.render('teams',{nav:'true', recs:recs});
     });
     
@@ -28,7 +28,8 @@ router.post('/save',ensureAuthenticated,(req, res) =>{
                 team_name:team_name,
                 delegates:delegates,
                 user_selectable:user_selectable,
-                skill_catagory:skill_catagory                
+                skill_catagory:skill_catagory,
+                organization:req.user.organization              
             });
             
             newTeam.save()
@@ -47,25 +48,20 @@ router.post('/save',ensureAuthenticated,(req, res) =>{
 
 
 router.get('/edit/:_id',(req,res)=>{
-    Team.findOne({_id:req.params._id}).then(rec=>{
-        console.log('rec '+rec);
+    Team.findOne({_id:req.params._id}).then(rec=>{        
         res.render('editTeam',{rec:rec,nav:'true'});
     });
 });
 
 
 router.post('/update/:_id',(req,res)=>{
-    const {skill_name,description} =req.body;
+    const {team_name} =req.body;
     Team.updateOne(
         {_id:req.params._id},
-            {skill_name : skill_name,
-            description: description
+            {team_name:team_name
             }).then(rec=>{
                 req.flash('success_msg',
-                'Team Updated : '+Team);
-
-
-
+                'Team Updated : '+team_name);
                 res.redirect('/teams/index');
 
             });

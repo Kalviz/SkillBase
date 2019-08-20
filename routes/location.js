@@ -6,11 +6,12 @@ const { ensureAuthenticated } = require('../config/auth');
 const Location = require('../models/Location');
 const Post = require('../models/Post');
 const User = require('../models/User');
+const SkillSet = require('../models/SkillSet');
 
 
 router.get('/index',ensureAuthenticated,(req,res) => {
     
-    Location.find({email:req.user.email}).then(recs=>{
+    Location.find({organization:req.user.organization}).then(recs=>{
         res.render('location',{nav:'true',recs:recs});
     });
     
@@ -45,12 +46,107 @@ router.get('/add',ensureAuthenticated,(req,res) =>{
     res.render('addLocation',{nav:'true'});
 });
 
+router.get('/heatmapConsultant',ensureAuthenticated,(req,res)=>{
+    const {skill_name} = req.body;
+    Location.find({organization:req.user.organization}).then(locations=>{        
+        SkillSet.find({organization:req.user.organization}).then(skills =>{
+            
+                res.render('heatmapConsultant',{nav:'true',locations:locations,skills:skills,show:'false'});
+                   
+        });
+    });
+});
+
+router.post('/heatmapConsultant',ensureAuthenticated,(req,res)=>{
+    const {skill_name,country} = req.body;
+    var obj ={};
+    if(country=='All'){
+        obj['skill_name'] = skill_name;
+        obj['organization'] = req.user.organization;
+        obj['status'] = 'Assessed';
+    }else{
+        obj['country'] = country;
+        obj['skill_name'] = skill_name;
+        obj['organization'] = req.user.organization;
+        obj['status'] = 'Assessed';
+    }
+    Location.find({organization:req.user.organization}).then(locations=>{        
+        SkillSet.find({organization:req.user.organization}).then(skill =>{
+            SkillSet.find({organization:req.user.organization,skill_name:skill_name}).then(skills =>{
+            User.find(obj).then(users=>{
+                console.log('users '+users);
+                res.render('heatmapConsultant',{nav:'true',locations:locations,recs:skills,skills:skill,users:users,show:'true'});
+            });        
+        });
+        });
+    });
+});
+
+router.get('/heatmapSkill',ensureAuthenticated,(req,res)=>{
+    const {skill_name} = req.body;
+    Location.find({organization:req.user.organization}).then(locations=>{        
+        SkillSet.find({organization:req.user.organization}).then(skills =>{
+            
+                res.render('heatmapSkill',{nav:'true',locations:locations,skills:skills,show:'false'});
+                   
+        });
+    });
+});
+
+router.post('/heatmapSkill',ensureAuthenticated,(req,res)=>{
+    const {skill_name,country} = req.body;
+    var obj ={};
+    if(country=='All'){
+        obj['skill_name'] = skill_name;
+        obj['organization'] = req.user.organization;
+        obj['status'] = 'Assessed';
+    }else{
+        obj['country'] = country;
+        obj['skill_name'] = skill_name;
+        obj['organization'] = req.user.organization;
+        obj['status'] = 'Assessed';
+    }
+    Location.find({organization:req.user.organization}).then(locations=>{        
+        SkillSet.find({organization:req.user.organization}).then(skill =>{
+            SkillSet.find({organization:req.user.organization,skill_name:skill_name}).then(skills =>{
+            User.find(obj).then(users=>{
+                console.log('users '+users);
+                res.render('heatmapSkill',{nav:'true',
+                locations:locations,
+                recs:skills,
+                skills:skill,
+                users:users,
+                skill:skill_name,
+                country:country,
+                show:'true'});
+            });        
+        });
+        });
+    });
+});
+
+
+
+
+router.get('/test123',(req,res)=>{
+    SkillSet.findOne({organization:req.user.organization,skill_name:'IFS'}).then(skills =>{
+        User.updateMany({email:'ben@gmail.com'},{$set:{skillset:[skills]}}).then(res3=>{
+            console.log('skill '+req.user.organization);
+            res.send('done');
+        });
+    });
+});
+
+
 router.post('/save',(req, res) =>{
-    const {location_name} =req.body;    
+    const {location_name,latitude,longitude} =req.body;    
                 
             const newLocation = new Location({
                 location_name:location_name,
-                email:req.user.email
+                latitude:latitude,
+                longitude:longitude,
+                email:req.user.email,
+                organization:req.user.organization
             });
             
             newLocation.save()

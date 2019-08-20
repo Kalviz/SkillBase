@@ -8,7 +8,7 @@ const Certification = require('../models/Certification');
 
 router.get('/index',ensureAuthenticated,(req,res) => {
     console.log('test');
-    Certification.find({email:req.user.email}).then(recs=>{
+    Certification.find({organization:req.user.organization}).then(recs=>{
         res.render('certifications',{nav:'true',recs:recs});
     });
     
@@ -23,7 +23,8 @@ router.post('/save',(req, res) =>{
                 
             const newCertification = new Certification({
                 certification_name:certification_name,
-                email:req.user.email
+                email:req.user.email,
+                organization:req.user.organization
             });
             
             newCertification.save()

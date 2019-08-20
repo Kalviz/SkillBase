@@ -9,7 +9,7 @@ const Role = require('../models/Role');
 
 router.get('/index',ensureAuthenticated,(req,res) => {
     console.log('test');
-    Role.find({email:req.user.email}).then(recs =>{
+    Role.find({organization:req.user.organization}).then(recs =>{
         res.render('roles',{nav:'true', recs:recs});
     });
     
@@ -24,7 +24,8 @@ router.post('/save',ensureAuthenticated,(req, res) =>{
                 
             const newRole = new Role({
                 email:req.user.email,
-                role_name:role_name
+                role_name:role_name,
+                organization:req.user.organization
             });
             
             newRole.save()

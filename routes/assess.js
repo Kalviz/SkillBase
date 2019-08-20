@@ -12,7 +12,7 @@ const SkillSet = require('../models/SkillSet');
 
 router.get('/index',ensureAuthenticated,(req,res) => {
     
-    User.find({main_user:req.user.email}).then(users=>{
+    User.find({organization:req.user.organization}).then(users=>{
         res.render('assessPoeple',{nav:'true',users:users});
       });  
 });
@@ -22,46 +22,53 @@ router.get('/add',ensureAuthenticated,(req,res) =>{
 });
 
 router.post('/submitAssessment',(req,res)=>{
+    var t = 'test';
+    var x = req.body.t;
+    console.log('sdasd '+x);
+
+    User.updateOne({_id:req.body.userid},{status:'Assessed'}).then(rec=>{
+        req.flash('success_msg',
+                'Assessment Completed');
+                res.redirect('/assess/index');
+    });
+
+    /* console.log('fordate '+require.formData);
      post = new User(req.body);
      var test = JSON.stringify(req.body, null, 2);
-     console.log('post '+JSON.stringify(req.body, null, 2));     
+     console.log('post '+JSON.stringify(req.body, null, 2).serial);     
 
-     User.update({email:'asdasd@gmail.com'},{$set:{skillset:req.body}},{upsert:true}).then(t=>{
+     User.update({email:'asdasd@gmail.com'},{$set:{skillset:test}},{upsert:true}).then(t=>{
         req.flash(
             'success_msg',
             'Assessment Done!'
         )
         res.redirect('/assess/index')
-    }) ;
-    
+    }) ; */
+    //User.update({})
 });
 
-router.post('/saveAssess/:proficiency/:_id/:email',(req,res)=>{
-   const {asdas } = req.body;
-   var par = req.params._id.split('/');
-   console.log('proficiency '+req.params.proficiency);
-   console.log('_id '+req.params._id);
-   console.log('email '+req.params.email);
-   User.findOne({email:req.params.email}).then(rec=>{
-    
-    //rec.forEach(function(r){        
-        
-                
-                
-              
-                User.updateOne({email:req.params.email,'skillset.skill_group.skills._id':'5d22c9e7c8a49d2da82aaac3'},{            
-                    $set:{'skillset.$[].skill_group.$[].skills.$':{proficiency:1123123}}
-                }).then(rt=>{
-                    
-                    res.send('ok');
-                }); 
-        
+router.post('/updateProf/:val/:sg_count/:sk_count/:userid',(req,res)=>{
+    var val = {};
+    console.log('user id '+req.params.userid);
+    //val['$set:{skillset[0].skill_group['+req.params.sg_count+'].skills['+req.params.sk_count+'].proficiency'] = req.params.val;
+    val['skillset.0.skill_group.'+req.params.sg_count+'.skills.'+req.params.sk_count+'.proficiency'] = req.params.val;
+    val['status'] = 'Cont'
+    User.updateOne({_id:req.params.userid},val).then(rec=>{
+        res.send({rec:rec});
+        console.log('updated');
+    });
 
-        
-        
-        
-    //});
-   });  
+
+});
+
+
+router.post('/saveAssess/:proficiency/:_id/:_idUser',(req,res)=>{      
+        User.updateOne({email:req.params.email,'skillset.skill_group.skills._id':'5d22c9e7c8a49d2da82aaac3'},{            
+            $set:{'skillset.$[].skill_group.$[].skills.$':{proficiency:1123123}}
+        }).then(rt=>{                    
+            res.send('ok');
+    }); 
+   
 });
 // /,{$set:{'skillset[0].skill_group.$.skills.$.':{skill:'gihra'}}}
 //router.post('/saveAssess/:email/:skill_name:/:skill_group_name/:skill/:proficiency')
@@ -80,7 +87,8 @@ router.post('/save',ensureAuthenticated,(req, res) =>{
                 team_name:team_name,
                 delegates:delegates,
                 user_selectable:user_selectable,
-                skill_catagory:skill_catagory                
+                skill_catagory:skill_catagory,
+                organization:req.user.organization               
             });
             
             newTeam.save()
