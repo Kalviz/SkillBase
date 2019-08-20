@@ -10,6 +10,10 @@ const LocationSchema = new mongoose.Schema({
         type: String,
         required: false,
         unique: false
+    },
+    organization:{
+        type: String,
+        required: false
     }
 });
 

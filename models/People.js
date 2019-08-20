@@ -23,7 +23,11 @@ const QualificationSchema = new mongoose.Schema({
     end_date: {
         type: Date,
         required: false        
-    }    
+    },
+    organization:{
+        type: String,
+        required: false
+    } 
 });
 
 

@@ -19,7 +19,11 @@ const SkillSchema = new mongoose.Schema({
         type: Date,
         required: false,
         default: Date.now      
-    }  
+    },
+    organization:{
+        type: String,
+        required: false
+    }
 });
 
 

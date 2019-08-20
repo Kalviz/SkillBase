@@ -48,6 +48,10 @@ const SkillSetSchema = new mongoose.Schema({
         required: false,
         unique: false
     },
+    organization:{
+        type: String,
+        required: false
+    },
     skill_group: [SkillGroupSchema]
     
 });

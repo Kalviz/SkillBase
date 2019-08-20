@@ -18,6 +18,10 @@ const RoleSchema = new mongoose.Schema({
         type: Number,
         required: false,
         unique: false
+    },
+    organization:{
+        type: String,
+        required: false
     }
     
 });

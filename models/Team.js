@@ -27,6 +27,10 @@ const TeamSchema = new mongoose.Schema({
     skill_catagory: {
         type: String,
         required: false
+    },
+    organization:{
+        type: String,
+        required: false
     }
     
 });

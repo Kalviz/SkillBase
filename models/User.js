@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: false
     },
     organization:{
         type: String,
@@ -25,6 +25,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: false
     },  
+    security_group:{
+        type: String,
+        required: false
+    },
     city: {
         type: String,
         required: false
@@ -46,6 +50,10 @@ const UserSchema = new mongoose.Schema({
         required: false
     },
     main_user: {
+        type: String,
+        required: false
+    },
+    status:{
         type: String,
         required: false
     },
